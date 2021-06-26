@@ -1,0 +1,37 @@
+.search_box {
+  width: 370px;
+  height: 40px;
+  position: relative;
+  padding: 8px 16px;
+  border: 2px solid #ffc20e;
+  display: flex;
+}
+
+.search_input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.search_input::placeholder {
+  color: #8484b7;
+  font-size: 16px;
+}
+
+.search_btn {
+  position: absolute;
+  padding: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.3s ease-out;
+}
+
+.search_btn:hover {
+  transform: translateY(-55%);
+}

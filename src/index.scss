@@ -1,0 +1,7 @@
+@import './design-tokens/variables';
+
+.title {
+  font-size: $title-font !important;
+  color: $primary-color !important;
+  font-weight: $title-weight !important;
+}
