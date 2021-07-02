@@ -1,0 +1,16 @@
+@import './../../../design-tokens/variables';
+
+.toolbar {
+  padding-top: 13px;
+  padding-bottom: 32px;
+  &_sort_wrapper {
+    display: flex;
+  }
+  &_results {
+    font-size: 12px;
+    color: $secondary-color;
+  }
+  &_select {
+    min-width: 184px;
+  }
+}

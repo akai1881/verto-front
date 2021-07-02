@@ -9,7 +9,11 @@ import banner3 from './../../static/images/Сгруппировать 649.jpg';
 const HeroCarousel = () => {
   return (
     <div className={styles.wrapper}>
-      <Carousel autoplay={true} className={styles.carousel}>
+      <Carousel
+        autoplay={true}
+        className={styles.carousel}
+        dots={{ className: 'dots' }}
+      >
         <div className={styles.item}>
           <img src={banner1} alt="banner 1" />
         </div>

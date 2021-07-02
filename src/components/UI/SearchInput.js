@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles from './_search-input.module.scss';
 import { ReactComponent as SearchIcon } from './../../static/icons/search.svg';
+import { useSelector } from 'react-redux';
 
 const SearchInput = ({ radius }) => {
+  const open = useSelector(({ modal }) => modal.open);
   const [search, setSearch] = useState('');
 
   const handleSubmit = (e) => {
@@ -16,7 +18,7 @@ const SearchInput = ({ radius }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={styles.search_box}
+      className={`${styles.search_box} ${open ? styles.active : ''}`}
       style={{
         borderTopLeftRadius: radius[0],
         borderTopRightRadius: radius[1],

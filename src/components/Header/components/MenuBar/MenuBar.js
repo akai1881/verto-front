@@ -75,6 +75,7 @@ const MenuBar = () => {
           {mock.map(({ id, title, path }) => (
             <NavLink
               to={path}
+              exact
               key={id}
               className={styles.link}
               activeClassName={styles.active}

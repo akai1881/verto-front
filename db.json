@@ -1,0 +1,78 @@
+{
+  "product": [
+    {
+      "id": 3,
+      "images": [],
+      "created_at": "2021-07-01T21:30:38.644075Z",
+      "updated_at": "2021-07-01T21:30:38.644103Z",
+      "slug": "smarwatches",
+      "title": "Умные часы",
+      "description": "Умные часы",
+      "quantity": 4,
+      "price": "400.00",
+      "in_stock": true,
+      "unity": "Шт",
+      "min_purchase": 5,
+      "category": 4,
+      "user_profile": 1
+    },
+    {
+      "id": 2,
+      "images": [
+        {
+          "image": "http://34.107.65.20/media/product_images/s-l500_5.jpg"
+        }
+      ],
+      "created_at": "2021-07-01T21:28:27.658956Z",
+      "updated_at": "2021-07-01T21:37:19.687225Z",
+      "slug": "apple-iphone-11-pro-256gb-gold-a2215-cdma-g",
+      "title": "Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + G",
+      "description": "test",
+      "quantity": 3,
+      "price": "400000.00",
+      "in_stock": true,
+      "unity": "Шт",
+      "min_purchase": 5,
+      "category": 1,
+      "user_profile": 1
+    },
+    {
+      "id": 1,
+      "images": [],
+      "created_at": "2021-06-29T10:43:46.233952Z",
+      "updated_at": "2021-06-29T10:43:46.233980Z",
+      "slug": "test",
+      "title": "Test",
+      "description": "123",
+      "quantity": 1,
+      "price": "1.00",
+      "in_stock": true,
+      "unity": "Шт",
+      "min_purchase": 1,
+      "category": 1,
+      "user_profile": 1
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "title": "Verto Электроника",
+      "children": [
+        {
+          "id": 2,
+          "title": "Мобильные телефоны, умные часы и аксессуары",
+          "children": [
+            {
+              "id": 3,
+              "title": "Смартфоны"
+            },
+            {
+              "id": 4,
+              "title": "Умные часы"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
