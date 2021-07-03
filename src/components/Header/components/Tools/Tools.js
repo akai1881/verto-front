@@ -7,6 +7,11 @@ import { ReactComponent as HeartIcon } from './../../../../static/icons/heart.sv
 import { ReactComponent as EyeIcon } from './../../../../static/icons/eye.svg';
 import { ReactComponent as BagIcon } from './../../../../static/icons/bag.svg';
 import { Tooltip } from 'antd';
+import { Select } from 'antd';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
+const { Option } = Select;
 
 const mock = [
   {
@@ -32,11 +37,26 @@ const mock = [
 ];
 
 const Tools = () => {
+  const isLoggedIn = useSelector(({ user }) => user.isLoggedIn);
+  const history = useHistory();
+
+  const handleClickLogin = (title) => {
+    if (title !== 'Профиль') {
+      return;
+    }
+
+    history.push('/login');
+  };
+
   return (
     <Flex align="center">
       {mock.map(({ id, Icon, title }) => (
         <Tooltip key={id} placement="top" title={title}>
-          <div key={id} className={styles.tool}>
+          <div
+            key={id}
+            className={styles.tool}
+            onClick={() => handleClickLogin(title)}
+          >
             <Icon />
           </div>
         </Tooltip>

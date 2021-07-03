@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import styles from './_hero-carousel.module.scss';
 
-import banner1 from './../../static/images/Сгруппировать 647.jpg';
+import banner1 from './../../static/images/banner1.jpg';
 import banner2 from './../../static/images/Сгруппировать 648.jpg';
 import banner3 from './../../static/images/Сгруппировать 649.jpg';
 

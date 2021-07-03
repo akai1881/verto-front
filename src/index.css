@@ -156,9 +156,16 @@ code {
 
 .track-vertical {
   background-color: #d4daec;
+  width: 8px !important;
+  border-radius: 4px !important;
 }
 
 .thumb-vertical {
+  background-color: #8193ec !important;
+  transition: 0.3s background-color linear;
+}
+
+.thumb-vertical.active {
   background-color: #3e5cf2 !important;
 }
 
@@ -167,6 +174,10 @@ code {
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   background-color: #8193ec !important;
   color: #fff !important;
+}
+
+.selector .ant-select-item {
+  color: #231e5a !important;
 }
 
 /* ============= SLIDER CUSTOMIZATION =================*/

@@ -10,7 +10,7 @@ const BannerCategory = ({ categoryName }) => {
       <Image src={banner} preview={false} />
       <Title className={`title ${styles.banner_title}`} level={2}>
         {/* {categoryName} */}
-        Сотовые телефоны и смартфоны
+        {categoryName}
       </Title>
     </div>
   );

@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from 'store/slices/userSlice';
 import Routes from './Routes';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, []);
+
   return (
     <div>
       <Routes />

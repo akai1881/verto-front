@@ -6,3 +6,12 @@ export const HOME_ROUTE = '/';
 
 export const GOODS_ROUTE =
   '/goods/:categoryIndex/:subCategoryIndex/:categoryName';
+
+export const LOGIN_ROUTE = '/login';
+
+export const REGISTER_ROUTE = '/register';
+
+/*<==================== PHONE VALIDATION REGEX ====================> */
+
+export const PHONE_REGEX =
+  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gi;

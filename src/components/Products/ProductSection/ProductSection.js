@@ -24,11 +24,13 @@ const ProductSection = ({
           {title}
         </Title>
         <Row gutter={gutter}>
-          {data.map((item) => (
-            <Col span={span} key={item.id}>
-              <ComponentItem item={item} />
-            </Col>
-          ))}
+          {data.length > 0
+            ? data.map((item) => (
+                <Col span={span} key={item.id}>
+                  <ComponentItem item={item} />
+                </Col>
+              ))
+            : '...Загрузка'}
         </Row>
       </Container>
     </div>

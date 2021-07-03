@@ -25,6 +25,9 @@ import new1 from './../../static/images/s-l1600 (23).jpg';
 import new2 from './../../static/images/1506666155_premium-spa-2.jpg';
 import new3 from './../../static/images/s-l1600 (27).jpg';
 import new4 from './../../static/images/unnamed.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchTopCategories } from 'store/slices/productsSlice';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -68,7 +71,7 @@ const popular = [
     status: true,
     min_purchase: 5,
     unity: 'шт',
-    img: card1,
+    images: [{ image: card2 }],
   },
   {
     id: 2,
@@ -76,7 +79,7 @@ const popular = [
     status: false,
     min_purchase: 25,
     unity: 'кв.м',
-    img: card2,
+    images: [{ image: card2 }],
   },
   {
     id: 3,
@@ -84,7 +87,7 @@ const popular = [
     status: true,
     min_purchase: 10,
     unity: 'кв.м',
-    img: card3,
+    images: [{ image: card2 }],
   },
   {
     id: 4,
@@ -92,7 +95,7 @@ const popular = [
     status: true,
     min_purchase: 3,
     unity: 'партии',
-    img: card4,
+    images: [{ image: card2 }],
   },
 ];
 
@@ -103,7 +106,7 @@ const newItems = [
     status: true,
     min_purchase: 5,
     unity: 'шт',
-    img: new1,
+    images: [{ image: card2 }],
   },
   {
     id: 2123,
@@ -111,7 +114,7 @@ const newItems = [
     status: false,
     min_purchase: 20,
     unity: 'шт',
-    img: new2,
+    images: [{ image: card2 }],
   },
   {
     id: 314535,
@@ -119,7 +122,7 @@ const newItems = [
     status: true,
     min_purchase: 10,
     unity: 'шт',
-    img: new3,
+    images: [{ image: card2 }],
   },
   {
     id: 42134,
@@ -127,19 +130,30 @@ const newItems = [
     status: true,
     min_purchase: 3,
     unity: 'шт',
-    img: new4,
+    images: [{ image: card2 }],
   },
 ];
 
 const HomePage = (props) => {
-  console.log(props);
+  const dispath = useDispatch();
+  const topCategories = useSelector(
+    ({ products }) => products.categories.topCategories
+  );
+
+  useEffect(() => {
+    dispath(fetchTopCategories());
+  }, []);
+
+  useEffect(() => {
+    console.log(topCategories, 'this is top categories');
+  }, [topCategories]);
 
   return (
     <MainLayout>
       <HeroCarousel />
       <ProductSection
         ComponentItem={CategoryCard}
-        data={categoriesMock}
+        data={topCategories}
         title="Tоп категории"
         span={4}
         titleGutter={37}

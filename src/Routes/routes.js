@@ -1,6 +1,13 @@
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
-import { GOODS_ROUTE, HOME_ROUTE } from '../utils/consts';
+import LoginPage from 'pages/Login/LoginPage';
+import RegisterPage from 'pages/Register/RegisterPage';
+import {
+  GOODS_ROUTE,
+  HOME_ROUTE,
+  LOGIN_ROUTE,
+  REGISTER_ROUTE,
+} from '../utils/consts';
 
 export const publicRoutes = [
   {
@@ -14,5 +21,17 @@ export const publicRoutes = [
     exact: true,
     name: 'Категории',
     Component: Goods,
+  },
+  {
+    path: LOGIN_ROUTE,
+    exact: true,
+    name: 'Логин',
+    Component: LoginPage,
+  },
+  {
+    path: REGISTER_ROUTE,
+    exact: true,
+    name: 'Регистрация',
+    Component: RegisterPage,
   },
 ];

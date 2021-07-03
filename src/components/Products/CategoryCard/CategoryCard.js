@@ -6,7 +6,7 @@ const CategoryCard = ({ item }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card_image}>
-        <img src={item.img} alt={item.title} />
+        <img src={item.image} alt={item.title} />
       </div>
       <Title level={4} className={styles.title}>
         {item.title}
