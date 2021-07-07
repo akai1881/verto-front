@@ -1,15 +1,17 @@
 import React from 'react';
 import Flex from 'components/UI/Flex';
 import styles from './_tool.module.scss';
-
+import { Menu, Dropdown } from 'antd';
 import { ReactComponent as ProfileIcon } from './../../../../static/icons/profile.svg';
 import { ReactComponent as HeartIcon } from './../../../../static/icons/heart.svg';
 import { ReactComponent as EyeIcon } from './../../../../static/icons/eye.svg';
 import { ReactComponent as BagIcon } from './../../../../static/icons/bag.svg';
 import { Tooltip } from 'antd';
 import { Select } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { logout, userSelector } from 'store/slices/userSlice';
+import { Link } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -37,7 +39,8 @@ const mock = [
 ];
 
 const Tools = () => {
-  const isLoggedIn = useSelector(({ user }) => user.isLoggedIn);
+  const { isAuth } = useSelector(userSelector);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleClickLogin = (title) => {
@@ -48,19 +51,53 @@ const Tools = () => {
     history.push('/login');
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const menu = (
+    <Menu>
+      {isAuth ? (
+        <Menu.Item key="0" onClick={handleLogout}>
+          Выйти
+        </Menu.Item>
+      ) : (
+        <>
+          <Menu.Item key="1">
+            <Link to="/login">Войти</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="/register">Регистрация</Link>
+          </Menu.Item>
+        </>
+      )}
+    </Menu>
+  );
+
   return (
     <Flex align="center">
-      {mock.map(({ id, Icon, title }) => (
-        <Tooltip key={id} placement="top" title={title}>
-          <div
-            key={id}
-            className={styles.tool}
-            onClick={() => handleClickLogin(title)}
-          >
-            <Icon />
-          </div>
-        </Tooltip>
-      ))}
+      {mock.map(({ id, Icon, title }) => {
+        if (title === 'Профиль') {
+          console.log('worked');
+          return (
+            <Dropdown overlay={menu} trigger={['click']}>
+              <Tooltip key={id} placement="top" title={title}>
+                <div key={id} className={styles.tool}>
+                  <Icon />
+                </div>
+              </Tooltip>
+            </Dropdown>
+          );
+        } else {
+          return (
+            <Tooltip key={id} placement="top" title={title}>
+              <div key={id} className={styles.tool}>
+                <Icon />
+              </div>
+            </Tooltip>
+          );
+        }
+      })}
     </Flex>
   );
 };

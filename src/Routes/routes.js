@@ -1,8 +1,10 @@
+import CompanyRegister from 'pages/CompanyLogin/CompanyRegister';
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
 import LoginPage from 'pages/Login/LoginPage';
 import RegisterPage from 'pages/Register/RegisterPage';
 import {
+  COMPANY_REGISTER,
   GOODS_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
@@ -33,5 +35,11 @@ export const publicRoutes = [
     exact: true,
     name: 'Регистрация',
     Component: RegisterPage,
+  },
+  {
+    path: COMPANY_REGISTER,
+    exact: true,
+    name: 'Регистрация компании',
+    Component: CompanyRegister,
   },
 ];

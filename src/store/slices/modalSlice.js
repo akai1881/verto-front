@@ -25,6 +25,12 @@ export const modalSlice = createSlice({
     setSubCategoryClick: (state, action) => {
       state.isSubCategoryOpen = action.payload;
     },
+    clearModalState: (state) => {
+      state.isCategoryOpen = false;
+      state.isSubCategoryOpen = false;
+      state.categoryIndex = null;
+      state.subCategoryIndex = null;
+    },
   },
 });
 
@@ -34,6 +40,7 @@ export const {
   setSubCategory,
   setSubCategoryClick,
   setCategoryClick,
+  clearModalState,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

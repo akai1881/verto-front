@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
 import styles from './_register.module.scss';
-import banner from './../../static/images/register.jpg';
 import Button from 'components/UI/Button';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { register } from 'store/slices/userSlice';
+import { Link, useHistory } from 'react-router-dom';
 import { Spin, notification } from 'antd';
 import * as yup from 'yup';
 import Checkbox from 'components/UI/Checkbox';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { PHONE_REGEX } from 'utils/consts';
+import { clearState, signup, userSelector } from 'store/slices/userSlice';
+import { openNotification } from 'utils/notifications';
 
 let schema = yup.object({
   first_name: yup.string().required('Это обязательное поле'),
@@ -29,7 +30,7 @@ let schema = yup.object({
     .string()
     .required('Введите пароль')
     .min(6, 'Пароль должен содержать больше 6-ти символов'),
-  check_password: yup
+  password_confirm: yup
     .string()
     .required('Введите подтверждение пароля')
     .oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
@@ -39,50 +40,44 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const { isLoading, isSuccess, errorMessage, user, isError } =
+    useSelector(userSelector);
   const [isChecked, setChecked] = useState(false);
   const [validate, setValidate] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const openNotificationWithIcon = (type) => {
-    notification[type]({
-      message: 'Регистрация прошла успешно',
-    });
-  };
-
   const onSubmit = async (data) => {
     console.log(data);
 
-    if (!isChecked) {
-      setValidate(true);
-      return;
+    // if (!isChecked) {
+    //   setValidate(true);
+    //   return;
+    // }
+
+    dispatch(signup(data));
+  };
+
+  useEffect(() => {
+    if (isError) {
+      openNotification('error', errorMessage, 10);
+      console.log(errorMessage);
+      console.log('from register page');
+      dispatch(clearState());
     }
 
-    openNotificationWithIcon('success');
-
-    // history.push('/');
-
-    // try {
-    //   dispatch(
-    //     register({
-    //       email,
-    //       password,
-    //       first_name: firstName,
-    //       last_name: lastName,
-    //       password_confirm: password,
-    //       phone_number,
-    //     })
-    //   ).then(() => {
-    //     if (!loading && !error) {
-    //       history.push('/');
-    //     }
-    //   });
-    // } catch (e) {
-    //   console.log(e.message);
-    // }
-  };
+    if (isSuccess) {
+      dispatch(clearState());
+      openNotification(
+        'success',
+        'На вашу почту отправлено письмо с активацией'
+      );
+      history.push('/');
+    }
+  }, [isSuccess, isError]);
 
   const handleValidate = (value) => {
     setChecked(value);
@@ -100,14 +95,19 @@ const RegisterPage = () => {
           <h1 className={styles.register_title}>Создать учетную запись</h1>
           <div className={styles.register_subtitle}>
             У вас есть собственная компания?
-            <span> Cоздать учетную запись компании</span>
+            <Link to="/register/company">
+              <span> Cоздать учетную запись компании</span>
+            </Link>
           </div>
           <div className={styles.input_wrapper}>
             <div className={styles.register_names}>
               <div className={styles.input_item}>
                 <div className={styles.register_name_label}>Имя</div>
                 <input
-                  className={styles.input}
+                  className={clsx({
+                    [styles.input]: true,
+                    [styles.error]: errors.first_name,
+                  })}
                   type="text"
                   {...register('first_name')}
                 />
@@ -119,7 +119,10 @@ const RegisterPage = () => {
               <div className={styles.input_item}>
                 <div className={styles.register_name_label}>Фамилия</div>
                 <input
-                  className={styles.input}
+                  className={clsx({
+                    [styles.input]: true,
+                    [styles.error]: errors.last_name,
+                  })}
                   type="text"
                   {...register('last_name')}
                 />
@@ -133,8 +136,12 @@ const RegisterPage = () => {
                 Адрес электронной почты
               </div>
               <input
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.error]: errors.email,
+                })}
                 type="text"
+                autoComplete="false"
                 {...register('email')}
               />
               <p className={styles.validate_error}>{errors.email?.message}</p>
@@ -143,7 +150,10 @@ const RegisterPage = () => {
             <div className={styles.input_item}>
               <div className={styles.register_email_label}>Номер телефона</div>
               <input
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.error]: errors.phone_number,
+                })}
                 type="text"
                 {...register('phone_number')}
               />
@@ -157,7 +167,10 @@ const RegisterPage = () => {
                 <span>Пароль</span>
               </div>
               <input
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.error]: errors.password,
+                })}
                 placeholder="6+ симоволов и знаков"
                 type="password"
                 {...register('password')}
@@ -172,12 +185,15 @@ const RegisterPage = () => {
                 <span>Потвердите пароль</span>
               </div>
               <input
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.error]: errors.password_confirm,
+                })}
                 type="password"
-                {...register('check_password')}
+                {...register('password_confirm')}
               />
               <p className={styles.validate_error}>
-                {errors.check_password?.message}
+                {errors.password_confirm?.message}
               </p>
             </div>
           </div>
@@ -199,7 +215,15 @@ const RegisterPage = () => {
               Необходимо принять условия пользования перед регистрацией
             </div>
           ) : null}
-          <Button style={{ marginTop: '25px' }}>Зарегистрироваться</Button>
+          <Button className={styles.register_btn}>
+            {isLoading ? (
+              <div className="spinner">
+                <Spin />
+              </div>
+            ) : (
+              'Зарегистрироваться'
+            )}
+          </Button>
         </form>
       </div>
     </div>

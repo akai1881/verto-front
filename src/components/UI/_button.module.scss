@@ -8,9 +8,13 @@
   cursor: pointer;
   align-items: center;
   padding: 15px 5px;
+  transition: 0.3s all linear;
   span {
     font-size: 16px;
     color: #fff;
     font-weight: bold;
+  }
+  &:hover {
+    background-color: #2e41a0;
   }
 }

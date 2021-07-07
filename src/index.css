@@ -35,6 +35,8 @@ code {
   flex-shrink: 0;
 }
 
+/* ============= MODAL CUSTOMIZATION =================*/
+
 .ant-modal-root .ant-modal-mask {
   background-color: rgba(62, 92, 242, 0.5);
 }
@@ -42,6 +44,11 @@ code {
 .modal .ant-modal-content {
   border-radius: 8px;
   box-shadow: 4px 4px 16px #d4daec;
+  min-height: 1000px;
+}
+
+.modal.pending .ant-modal-content {
+  padding: 20px;
 }
 
 .modal .ant-modal-content .ant-modal-body {
@@ -58,6 +65,7 @@ code {
   src: url();
 } */
 
+/* ============= SLIDER CUSTOMIZATION =================*/
 .dots {
   bottom: 40px !important;
   left: -55% !important;
@@ -199,4 +207,18 @@ code {
   width: 12px !important;
   height: 12px !important;
   margin-top: -2px !important;
+}
+
+/* ============= SPINNER CUSTOMIZATION =================*/
+
+.spinner .ant-spin .ant-spin-dot .ant-spin-dot-item {
+  background-color: #fff;
+}
+
+/* ============= COMPANY SELECT CUSTOMIZATION =================*/
+
+.selector .ant-select-selector {
+  height: 40px !important;
+  border-radius: 8px !important;
+  background-color: #d4daec !important;
 }

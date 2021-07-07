@@ -5,6 +5,7 @@ import styles from './_category.module.scss';
 import { ReactComponent as ArrowDown } from './../../../../static/icons/arrow-down.svg';
 import { ReactComponent as CloseIcon } from './../../../../static/icons/16_cancel white.svg';
 import {
+  clearModalState,
   setCategory,
   setCategoryClick,
   setModalVisible,
@@ -23,10 +24,7 @@ const Category = () => {
       set category 
       list to default
     */
-    dispatch(setCategoryClick(false));
-    dispatch(setCategory(null));
-    dispatch(setSubCategoryClick(false));
-    dispatch(setSubCategory(null));
+    dispatch(clearModalState());
   };
 
   return (

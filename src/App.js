@@ -7,7 +7,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkAuth());
+    const access = localStorage.getItem('access');
+
+    if (access) {
+      dispatch(checkAuth(access));
+    }
   }, []);
 
   return (

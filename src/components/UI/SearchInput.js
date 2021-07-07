@@ -18,7 +18,7 @@ const SearchInput = ({ radius }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${styles.search_box} ${open ? styles.active : ''}`}
+      className={`${styles.search} ${open ? styles.active : ''}`}
       style={{
         borderTopLeftRadius: radius[0],
         borderTopRightRadius: radius[1],

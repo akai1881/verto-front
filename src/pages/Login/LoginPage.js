@@ -1,60 +1,98 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './_login.module.scss';
 import banner from './../../static/images/Сгруппировать 647.jpg';
 import Button from 'components/UI/Button';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { login } from 'store/slices/userSlice';
+import { clearState, login, userSelector } from 'store/slices/userSlice';
 import { Spin } from 'antd';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { openNotification } from 'utils/notifications';
+import { useForm } from 'react-hook-form';
+import clsx from 'clsx';
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .required('Это обязательное поле')
+    .email('Введите email в корректном формате'),
+  password: yup.string().required('Это обязательное поле'),
+});
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const loading = useSelector(({ user }) => user.loading);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const { isSuccess, isError, isLoading, errorMessage, user } =
+    useSelector(userSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      dispatch(login({ email, password }));
-      if (!loading) {
-        history.push('/');
-      }
-    } catch (e) {
-      console.log(e.message);
-    }
+  const onSubmit = (data) => {
+    dispatch(login(data));
   };
+
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+
+    return () => {
+      dispatch(clearState());
+    };
+  }, [user]);
+
+  useEffect(() => {
+    if (isError) {
+      openNotification('error', errorMessage, 10);
+      console.log(errorMessage);
+      console.log('from login page');
+      dispatch(clearState());
+    }
+
+    if (isSuccess) {
+      dispatch(clearState());
+      openNotification('success', 'Вы успешно вошли в систему');
+      history.push('/');
+    }
+  }, [isSuccess, isError]);
 
   return (
     <div className={styles.login}>
-      <div className={styles.login_left_banner}>
-        <img src={banner} />
-      </div>
+      <div className={styles.login_left_banner}></div>
       <div className={styles.login_right_column}>
-        <form className={styles.login_form} onSubmit={(e) => onSubmit(e)}>
+        <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
           <h1 className={styles.login_title}>Войдите в GetByVerto</h1>
           <div className={styles.login_subtitle}>
-            или создайте{' '}
+            <span>или создайте </span>
             <Link to="/register">
               <span>учетную запись</span>
             </Link>
           </div>
+
+          {/* {isError ? (
+            <p className={styles.input_error}>{errorMessage}</p>
+          ) : null} */}
+
           <div className={styles.input_wrapper}>
             <div className={styles.input_item}>
               <div className={styles.login_email_label}>
                 Адрес электронной почты
               </div>
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.input_error]: errors.email,
+                })}
                 type="text"
-                name="email"
+                {...register('email')}
               />
+              <p className={styles.login_validate}>{errors.email?.message}</p>
             </div>
 
             <div className={styles.input_item}>
@@ -63,15 +101,27 @@ const LoginPage = () => {
                 <span>Забыли пароль?</span>
               </div>
               <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={styles.input}
+                className={clsx({
+                  [styles.input]: true,
+                  [styles.input_error]: errors.password,
+                })}
                 type="password"
-                name="email"
+                {...register('password')}
               />
+              <p className={styles.login_validate}>
+                {errors.password?.message}
+              </p>
             </div>
           </div>
-          <Button>{!loading ? 'Войдите в систему' : <Spin />}</Button>
+          <Button className={styles.login_btn}>
+            {isLoading ? (
+              <div className="spinner">
+                <Spin />
+              </div>
+            ) : (
+              'Войдите в систему'
+            )}
+          </Button>
         </form>
       </div>
     </div>

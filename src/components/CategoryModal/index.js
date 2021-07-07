@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './_modal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearModalState,
   setCategory,
   setCategoryClick,
   setModalVisible,
@@ -12,7 +13,8 @@ import {
 import Flex from 'components/UI/Flex';
 import { Fade } from 'react-awesome-reveal';
 import { useHistory } from 'react-router-dom';
-import { Spin } from 'antd';
+import { Skeleton, Spin } from 'antd';
+import clsx from 'clsx';
 
 const CategoryModal = () => {
   const {
@@ -35,20 +37,13 @@ const CategoryModal = () => {
     dispatch(setModalVisible());
   };
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
-
   const handleCloseModal = () => {
+    dispatch(setModalVisible());
     /*
       set category
       list to default
     */
-    dispatch(setModalVisible());
-    dispatch(setCategoryClick(false));
-    dispatch(setCategory(null));
-    dispatch(setSubCategoryClick(false));
-    dispatch(setSubCategory(null));
+    dispatch(clearModalState());
   };
 
   const handleCategoryClick = (index, slug) => {
@@ -59,7 +54,6 @@ const CategoryModal = () => {
         dispatch(setCategoryClick(true));
         dispatch(setCategory(index));
       } else {
-        // history.push(`/category/${slug}`);
         dispatch(setCategory(index));
         dispatch(setCategoryClick(true));
       }
@@ -85,7 +79,7 @@ const CategoryModal = () => {
       visible={open}
       closable={false}
       maskStyle={{ backgroudColor: 'red' }}
-      wrapClassName="modal"
+      wrapClassName={`modal ${loading ? 'pending' : ''}`}
       style={{ top: 144, left: -10, borderRadius: 30, padding: 0 }}
       footer={null}
       width={1190}
@@ -99,9 +93,10 @@ const CategoryModal = () => {
               <div
                 key={first.id}
                 onClick={handleCategoryClick(index, first.slug)}
-                className={`${styles.default} ${
-                  categoryIndex === index ? styles.active_cat : ''
-                }`}
+                className={clsx({
+                  [styles.default]: true,
+                  [styles.active_cat]: categoryIndex === index,
+                })}
               >
                 {first.title}
               </div>
@@ -116,9 +111,11 @@ const CategoryModal = () => {
                     <div
                       key={item.id}
                       onClick={handleSubCategoryClick(index)}
-                      className={`${styles.default} ${styles.subcat} ${
-                        subCategoryIndex === index ? styles.active_sub : ''
-                      }`}
+                      className={clsx({
+                        [styles.default]: true,
+                        [styles.subcat]: true,
+                        [styles.active_sub]: subCategoryIndex === index,
+                      })}
                     >
                       {item.title}
                     </div>
@@ -150,7 +147,10 @@ const CategoryModal = () => {
         </Flex>
       ) : (
         <div className={styles.spinner}>
-          <Spin />
+          <Skeleton
+            active
+            paragraph={{ rows: 5, width: [...Array(5).fill('100%')] }}
+          />
         </div>
       )}
     </Modal>

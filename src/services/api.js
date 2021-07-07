@@ -1,14 +1,18 @@
 import axios from 'axios';
 import { BASE_API_URL } from 'utils/consts';
 
-const $api = axios.create({
+export const $auth = axios.create({
   baseURL: BASE_API_URL,
 });
 
-// $api.interceptors.request.use((config) => {
-//   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-//   return config;
-// });
+export const $api = axios.create({
+  baseURL: BASE_API_URL,
+});
+
+$auth.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('access')}`;
+  return config;
+});
 
 // $api.interceptors.response.use(
 //   (config) => {
@@ -35,5 +39,3 @@ const $api = axios.create({
 //     throw error;
 //   }
 // );
-
-export default $api;

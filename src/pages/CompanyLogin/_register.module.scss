@@ -4,7 +4,7 @@
   display: flex;
   height: 100vh;
   &_form {
-    max-width: 444px;
+    min-width: 444px;
   }
   &_left_banner {
     max-width: 49.55555%;
@@ -17,7 +17,7 @@
     background-repeat: no-repeat;
   }
   &_right_column {
-    padding: 100px 0 0 105px;
+    padding: 20px 40px 0 105px;
     max-width: 51.55555%;
     flex-basis: 51.55555%;
     flex-grow: 0;
@@ -37,6 +37,7 @@
   &_subtitle {
     font-size: 12px;
     color: $primary-color;
+    margin-bottom: 20px;
     span {
       color: #3e5cf2;
       cursor: pointer;
@@ -124,4 +125,16 @@
   &_btn {
     margin-top: 25px;
   }
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  width: 50%;
+}
+
+.column:first-child {
+  margin-right: 20px;
 }

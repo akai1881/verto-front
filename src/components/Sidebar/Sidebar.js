@@ -4,6 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PriceFilter from 'components/PriceFilter/PriceFilter';
 import styles from './_sidebar.module.scss';
+import clsx from 'clsx';
 
 const mockData = [
   {
@@ -94,7 +95,7 @@ const Sidebar = ({ params }) => {
     return categories[categoryIndex]?.children[subCategoryIndex]?.title;
   };
 
-  const getActiveCategory = (title) => {
+  const isActiveCategory = (title) => {
     return title === categoryName;
   };
 
@@ -113,9 +114,11 @@ const Sidebar = ({ params }) => {
             {mockData.map((item) => (
               <li
                 key={item.id}
-                className={`${styles.sidebar_text} ${
-                  styles.sidebar_list_item
-                } ${getActiveCategory(item.title) ? styles.active : ''}`}
+                className={clsx({
+                  [styles.sidebar_text]: true,
+                  [styles.sidebar_list_item]: true,
+                  [styles.active]: isActiveCategory(item.title),
+                })}
               >
                 {item.title}
               </li>
