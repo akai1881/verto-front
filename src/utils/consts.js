@@ -13,6 +13,8 @@ export const REGISTER_ROUTE = '/register';
 
 export const COMPANY_REGISTER = '/register/company';
 
+export const PRODUCT_DETAILS = '/product/:productId';
+
 /*<==================== PHONE VALIDATION REGEX ====================> */
 
 export const PHONE_REGEX =

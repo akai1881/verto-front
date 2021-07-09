@@ -222,3 +222,46 @@ code {
   border-radius: 8px !important;
   background-color: #d4daec !important;
 }
+
+/* ============= SWIPER SLIDE  CUSTOMIZATION =================*/
+
+.swiper-wrap {
+  width: 370px;
+}
+
+.swiper-wrap .swiper-container .swiper-button-prev {
+  width: 34px;
+  height: 34px;
+  background-image: url(./static/images/arrow-left.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+.swiper-wrap .swiper-container .swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-wrap .swiper-container .swiper-button-next {
+  width: 34px;
+  height: 34px;
+  background-image: url(./static/images/arrow-right.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+.swiper-wrap .swiper-container .swiper-button-next::after {
+  display: none;
+}
+.swiper-wrap .thumbs .swiper-container .swiper-button-prev {
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  background-image: url(./static/images/left-ar.png);
+}
+
+.swiper-wrap .thumbs .swiper-container .swiper-button-next {
+  width: 20px;
+  height: 20px;
+  right: 2px;
+  background-image: url(./static/images/right-ar.png);
+}

@@ -85,7 +85,7 @@ const CategoryModal = () => {
       width={1190}
       onCancel={handleCloseModal}
       onOk={handleOpenModal}
-    >
+    > 
       {!loading ? (
         <Flex>
           <div className={styles.column}>

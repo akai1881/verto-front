@@ -1,13 +1,15 @@
-import CompanyRegister from 'pages/CompanyLogin/CompanyRegister';
+import CompanyRegister from 'pages/CompanyRegister/CompanyRegister';
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
 import LoginPage from 'pages/Login/LoginPage';
+import ProductsDetail from 'pages/ProductsDetail/ProductsDetail';
 import RegisterPage from 'pages/Register/RegisterPage';
 import {
   COMPANY_REGISTER,
   GOODS_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
+  PRODUCT_DETAILS,
   REGISTER_ROUTE,
 } from '../utils/consts';
 
@@ -41,5 +43,11 @@ export const publicRoutes = [
     exact: true,
     name: 'Регистрация компании',
     Component: CompanyRegister,
+  },
+  {
+    path: PRODUCT_DETAILS,
+    exact: true,
+    name: 'Детали продукта',
+    Component: ProductsDetail,
   },
 ];
