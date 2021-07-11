@@ -5,7 +5,7 @@ import Button from 'components/UI/Button';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { Spin, notification } from 'antd';
+import { Spin } from 'antd';
 import * as yup from 'yup';
 import Checkbox from 'components/UI/Checkbox';
 import { useForm } from 'react-hook-form';
@@ -43,7 +43,7 @@ const RegisterPage = () => {
 
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const { isLoading, isSuccess, errorMessage, user, isError } =
+  const { isLoading, isSuccess, errorMessage, isError } =
     useSelector(userSelector);
   const [isChecked, setChecked] = useState(false);
   const [validate, setValidate] = useState(false);
@@ -86,7 +86,7 @@ const RegisterPage = () => {
 
   return (
     <div className={styles.register}>
-      <div className={styles.register_left_banner}></div>
+      <div className={styles.register_left_banner}/>
       <div className={styles.register_right_column}>
         <form
           className={styles.register_form}

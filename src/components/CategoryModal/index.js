@@ -1,5 +1,5 @@
 import Modal from 'antd/lib/modal/Modal';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './_modal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,10 +10,9 @@ import {
   setSubCategory,
   setSubCategoryClick,
 } from 'store/slices/modalSlice';
-import Flex from 'components/UI/Flex';
 import { Fade } from 'react-awesome-reveal';
 import { useHistory } from 'react-router-dom';
-import { Skeleton, Spin } from 'antd';
+import { Skeleton } from 'antd';
 import clsx from 'clsx';
 
 const CategoryModal = () => {
@@ -46,7 +45,7 @@ const CategoryModal = () => {
     dispatch(clearModalState());
   };
 
-  const handleCategoryClick = (index, slug) => {
+  const handleCategoryClick = (index) => {
     return () => {
       if (categoryIndex !== index) {
         dispatch(setSubCategoryClick(null));
@@ -78,7 +77,6 @@ const CategoryModal = () => {
     <Modal
       visible={open}
       closable={false}
-      maskStyle={{ backgroudColor: 'red' }}
       wrapClassName={`modal ${loading ? 'pending' : ''}`}
       style={{ top: 144, left: -10, borderRadius: 30, padding: 0 }}
       footer={null}
@@ -87,64 +85,88 @@ const CategoryModal = () => {
       onOk={handleOpenModal}
     >
       {!loading ? (
-        <Flex>
+        <div className={styles.row}>
           <div className={styles.column}>
-            {categories.map((first, index) => (
-              <div
-                key={first.id}
-                onClick={handleCategoryClick(index, first.slug)}
-                className={clsx({
-                  [styles.default]: true,
-                  [styles.active_cat]: categoryIndex === index,
-                })}
-              >
-                {first.title}
+            <div className={styles.columnInner}>
+              {categories.map((first, index) => (
+                <div
+                  key={first.id}
+                  onClick={handleCategoryClick(index)}
+                  className={clsx({
+                    [styles.default]: true,
+                    [styles.active_cat]: categoryIndex === index,
+                  })}
+                >
+                  {first.title}
+                </div>
+              ))}
+            </div>
+          </div>
+          {isCategoryOpen ? (
+            <>
+              <div className={styles.divider} />
+              <div className={styles.column}>
+                <Fade
+                  direction="left"
+                  className={styles.animationContainer}
+                  duration={380}
+                >
+                  <div className={styles.columnInner}>
+                    <Fade direction="down" cascade duration={280}>
+                      <>
+                        {categories[categoryIndex].children.map(
+                          (item, index) => (
+                            <div
+                              key={item.id}
+                              onClick={handleSubCategoryClick(index)}
+                              className={clsx({
+                                [styles.default]: true,
+                                [styles.subcat]: true,
+                                [styles.active_sub]: subCategoryIndex === index,
+                              })}
+                            >
+                              {item.title}
+                            </div>
+                          )
+                        )}
+                      </>
+                    </Fade>
+                  </div>
+                </Fade>
               </div>
-            ))}
-          </div>
-          <div className={styles.divider} />
-          <div className={styles.column}>
-            <Fade direction="down" cascade duration={280}>
-              {isCategoryOpen ? (
-                <>
-                  {categories[categoryIndex].children.map((item, index) => (
-                    <div
-                      key={item.id}
-                      onClick={handleSubCategoryClick(index)}
-                      className={clsx({
-                        [styles.default]: true,
-                        [styles.subcat]: true,
-                        [styles.active_sub]: subCategoryIndex === index,
-                      })}
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-                </>
-              ) : null}
-            </Fade>
-          </div>
-          <div className={styles.divider} />
-          <div className={styles.column}>
-            <Fade direction="down" cascade duration={280}>
-              {isSubCategoryOpen ? (
-                <>
-                  {categories[categoryIndex].children[
-                    subCategoryIndex
-                  ].children.map((item) => (
-                    <div
-                      key={item.id}
-                      onClick={handleCategoryRedirect(item.title)}
-                      className={`${styles.default} ${styles.children_cat}`}
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-                </>
-              ) : null}
-            </Fade>
-          </div>
-        </Flex>
+            </>
+          ) : null}
+          {isSubCategoryOpen ? (
+            <>
+              <div className={styles.divider} />
+              <div className={styles.column}>
+                <Fade
+                  direction="left"
+                  className={styles.animationContainer}
+                  duration={300}
+                >
+                  <div className={styles.columnInner}>
+                    <Fade direction="down" cascade duration={280}>
+                      <>
+                        {categories[categoryIndex].children[
+                          subCategoryIndex
+                        ].children.map((item) => (
+                          <div
+                            key={item.id}
+                            onClick={handleCategoryRedirect(item.title)}
+                            className={`${styles.default} ${styles.children_cat}`}
+                          >
+                            {item.title}
+                          </div>
+                        ))}
+                      </>
+                    </Fade>
+                  </div>
+                </Fade>
+              </div>
+            </>
+          ) : null}
+        </div>
       ) : (
         <div className={styles.spinner}>
           <Skeleton

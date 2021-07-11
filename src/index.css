@@ -42,9 +42,11 @@ code {
 }
 
 .modal .ant-modal-content {
-  border-radius: 8px;
+  /* border-radius: 8px;
   box-shadow: 4px 4px 16px #d4daec;
-  min-height: 1000px;
+  min-height: 200px; */
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 .modal.pending .ant-modal-content {

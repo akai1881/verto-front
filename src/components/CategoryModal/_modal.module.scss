@@ -5,15 +5,27 @@
 }
 
 .divider {
-  height: 100%;
   width: 2px;
   background-color: #d4daec;
 }
 
+.row {
+  display: flex;
+}
+
 .column {
-  width: 33.333333%;
-  height: 100%;
-  padding: 25px 0 10px 20px;
+  width: calc(33.3333333% - 4px);
+  .columnInner {
+    background-color: #fff;
+    height: 100%;
+    padding: 25px 0 10px 20px;
+  }
+  &:last-of-type .columnInner {
+    border-radius: 0px 8px 8px 0px;
+  }
+  &:first-of-type .columnInner {
+    border-radius: 8px 0 0 8px;
+  }
   .default {
     font-size: 16px;
     color: #231e5a;
@@ -26,6 +38,9 @@
     padding-left: 20px;
     color: #fff;
     transition: 0.2s;
+  }
+  .animationContainer {
+    height: 100%;
   }
   .subcat {
     position: relative;

@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './_scroll.module.scss';
 import { Scrollbars } from 'rc-scrollbars';
 import { useState } from 'react';
 

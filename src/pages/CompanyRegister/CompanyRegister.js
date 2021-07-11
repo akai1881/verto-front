@@ -53,7 +53,7 @@ const CompanyRegister = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const { isLoading, isSuccess, errorMessage, isError, user } =
+  const { isLoading, isSuccess, errorMessage, isError } =
     useSelector(userSelector);
   const [isChecked, setChecked] = useState(false);
   const [validate, setValidate] = useState(false);
@@ -105,7 +105,7 @@ const CompanyRegister = () => {
 
   return (
     <div className={styles.register}>
-      <div className={styles.register_left_banner}></div>
+      <div className={styles.register_left_banner}/>
       <div className={styles.register_right_column}>
         <form
           className={styles.register_form}
