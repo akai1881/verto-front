@@ -1,12 +1,12 @@
 .btn {
   background-color: #3e5cf2;
+  min-width: 270px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
-  border: none;
-  min-width: 270px;
-  cursor: pointer;
   align-items: center;
+  border: none;
+  cursor: pointer;
   padding: 15px 5px;
   transition: 0.3s all linear;
   span {

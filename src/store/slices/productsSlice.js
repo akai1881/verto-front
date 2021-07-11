@@ -27,6 +27,31 @@ export const fetchTopCategories = createAsyncThunk(
   }
 );
 
+export const fetchPopularProducts = createAsyncThunk(
+  'products/fetchPopularProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await $api.get('/product/?ordering=-views');
+
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.response.data);
+    }
+  }
+);
+
+export const fetchNewProducts = createAsyncThunk(
+  'products/fetchNewProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await $api.get('/product/');
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.response.data);
+    }
+  }
+);
+
 // export const fetchPopularCategories = createAsyncThunk(
 //   'products/fetchPopularCategories',
 //   async (_) => {
@@ -64,8 +89,19 @@ export const productsSlice = createSlice({
       isLoading: false,
       data: [],
     },
+    popularProducts: {
+      error: null,
+      isLoading: false,
+      data: [],
+    },
+    newProducts: {
+      data: [],
+      isLoading: false,
+      error: null,
+    },
   },
   extraReducers: (builder) => {
+    // TOP CATEGORIES
     builder.addCase(fetchTopCategories.pending, ({ categories }, action) => {
       categories.topCategoriesLoading = true;
     });
@@ -73,6 +109,8 @@ export const productsSlice = createSlice({
       categories.topCategories = action.payload;
       categories.topCategoriesLoading = false;
     });
+
+    // CATEGORIES
     builder.addCase(fetchCategories.pending, ({ categories }) => {
       categories.isLoading = true;
     });
@@ -86,6 +124,8 @@ export const productsSlice = createSlice({
       categories.error = action.payload;
       categories.data = [];
     });
+
+    // FILTERNG PRODUCTS
     builder.addCase(fetchGoodsByCategory.pending, ({ products }) => {
       products.isLoading = true;
     });
@@ -99,6 +139,29 @@ export const productsSlice = createSlice({
       products.isLoading = false;
       products.error = action.payload;
       products.data = [];
+    });
+
+    // POPULAR PRODUCTS
+
+    builder.addCase(fetchPopularProducts.pending, ({ popularProducts }) => {
+      popularProducts.isLoading = true;
+    });
+    builder.addCase(
+      fetchPopularProducts.fulfilled,
+      ({ popularProducts }, action) => {
+        popularProducts.isLoading = false;
+        popularProducts.data = action.payload.results;
+      }
+    );
+
+    // NEW PRODUCTS
+
+    builder.addCase(fetchNewProducts.pending, ({ newProducts }) => {
+      newProducts.isLoading = true;
+    });
+    builder.addCase(fetchNewProducts.fulfilled, ({ newProducts }, action) => {
+      newProducts.isLoading = false;
+      newProducts.data = action.payload.results;
     });
   },
 });

@@ -27,7 +27,11 @@ import new3 from './../../static/images/s-l1600 (27).jpg';
 import new4 from './../../static/images/unnamed.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchTopCategories } from 'store/slices/productsSlice';
+import {
+  fetchNewProducts,
+  fetchPopularProducts,
+  fetchTopCategories,
+} from 'store/slices/productsSlice';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -140,8 +144,16 @@ const HomePage = (props) => {
     ({ products }) => products.categories.topCategories
   );
 
+  const popularProducts = useSelector(
+    ({ products }) => products.popularProducts.data
+  );
+
+  const newProducts = useSelector(({ products }) => products.newProducts.data);
+
   useEffect(() => {
     dispath(fetchTopCategories());
+    dispath(fetchPopularProducts());
+    dispath(fetchNewProducts());
   }, []);
 
   useEffect(() => {
@@ -186,7 +198,7 @@ const HomePage = (props) => {
       </section>
       <ProductSection
         ComponentItem={Card}
-        data={popular}
+        data={popularProducts}
         gutter={[26, 16]}
         title="Популярное"
         span={6}
@@ -194,7 +206,7 @@ const HomePage = (props) => {
       />
       <ProductSection
         ComponentItem={Card}
-        data={newItems}
+        data={newProducts}
         title="Новинки"
         span={6}
         gutter={[26, 16]}

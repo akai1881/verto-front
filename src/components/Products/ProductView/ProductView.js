@@ -37,7 +37,7 @@ SwiperCore.use([Navigation, Autoplay, Thumbs]);
 //   },
 // ];
 
-const ProductView = () => {
+const ProductView = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -51,10 +51,12 @@ const ProductView = () => {
           autoplay
           thumbs={{ swiper: thumbsSwiper }}
         >
-          <SwiperSlide>
-            <img className={styles.mainImg} src={photo1} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
+          {images?.map((image) => (
+            <SwiperSlide>
+              <img className={styles.mainImg} src={image.image} alt="" />
+            </SwiperSlide>
+          ))}
+          {/* <SwiperSlide>
             <img className={styles.mainImg} src={photo2} alt="" />
           </SwiperSlide>
           <SwiperSlide>
@@ -62,7 +64,7 @@ const ProductView = () => {
           </SwiperSlide>
           <SwiperSlide>
             <img className={styles.mainImg} src={photo4} alt="" />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
         <div className="thumbs">
           <Swiper
@@ -70,21 +72,14 @@ const ProductView = () => {
             watchSlidesVisibility
             watchSlidesProgress
             navigation
-            spaceBetween={5}
-            slidesPerView={3}
+            spaceBetween={6}
+            slidesPerView={4}
           >
-            <SwiperSlide autoplay loop>
-              <img className={styles.thumbs} src={photo1} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className={styles.thumbs} src={photo2} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className={styles.thumbs} src={photo3} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className={styles.thumbs} src={photo4} alt="" />
-            </SwiperSlide>
+            {images.map((image) => (
+              <SwiperSlide>
+                <img className={styles.mainImg} src={image.image} alt="" />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

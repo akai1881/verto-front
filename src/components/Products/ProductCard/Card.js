@@ -7,11 +7,18 @@ import eyeIconActive from './../../../static/icons/24_eye red_active.svg';
 import eyeIconDefault from './../../../static/icons/24_eye yellow_diactive.svg';
 
 import favIconActive from './../../../static/icons/heart.svg';
+import { useHistory } from 'react-router-dom';
 
 const Card = ({ item }) => {
+  const history = useHistory();
   // console.log(item);
+
+  const handleClick = () => {
+    history.push(`/product/${item.id}`);
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.media}>
         <Image
           src={
