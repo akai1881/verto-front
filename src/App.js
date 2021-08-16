@@ -14,11 +14,7 @@ function App() {
     }
   }, []);
 
-  return (
-    <div>
-      <Routes />
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;

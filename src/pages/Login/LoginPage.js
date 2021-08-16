@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './_login.module.scss';
 import banner from './../../static/images/Сгруппировать 647.jpg';
 import Button from 'components/UI/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { clearState, login, userSelector } from 'store/slices/userSlice';
-import { Spin } from 'antd';
-import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {clearState, login, userSelector} from 'store/slices/userSlice';
+import {Spin} from 'antd';
+import {Link} from 'react-router-dom';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { openNotification } from 'utils/notifications';
-import { useForm } from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {openNotification} from 'utils/notifications';
+import {useForm} from 'react-hook-form';
 import clsx from 'clsx';
+import PreloadSpinner from "../../components/UI/PreloadSpinner";
 
 const schema = yup.object({
   email: yup
@@ -25,10 +26,12 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+    formState: {errors},
+  } = useForm({resolver: yupResolver(schema)});
 
-  const { isSuccess, isError, isLoading, errorMessage, user } =
+  const [DOMLoading, setDOMLoading] = useState(true)
+
+  const {isSuccess, isError, isLoading, errorMessage, user} =
     useSelector(userSelector);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,6 +51,22 @@ const LoginPage = () => {
   }, [user]);
 
   useEffect(() => {
+    const handleDOMLoaded = () => {
+      console.log('worked')
+      setDOMLoading(false)
+    }
+
+    console.log("use effect")
+
+    window.addEventListener('load', handleDOMLoaded)
+
+    return () => {
+      window.removeEventListener('load', handleDOMLoaded)
+      setDOMLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
     if (isError) {
       openNotification('error', errorMessage, 10);
       console.log(errorMessage);
@@ -64,6 +83,9 @@ const LoginPage = () => {
 
   return (
     <div className={styles.login}>
+      {DOMLoading && (
+        <PreloadSpinner/>
+      )}
       <div className={styles.login_left_banner}></div>
       <div className={styles.login_right_column}>
         <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
@@ -116,7 +138,7 @@ const LoginPage = () => {
           <Button className={styles.login_btn}>
             {isLoading ? (
               <div className="spinner">
-                <Spin />
+                <Spin/>
               </div>
             ) : (
               'Войдите в систему'

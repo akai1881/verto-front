@@ -14,24 +14,29 @@
 }
 
 .column {
-  width: calc(33.3333333% - 4px);
+  width: calc(33.3333333% - 1%);
+
   .columnInner {
     background-color: #fff;
     height: 100%;
     padding: 25px 0 10px 20px;
   }
+
   &:last-of-type .columnInner {
     border-radius: 0px 8px 8px 0px;
   }
+
   &:first-of-type .columnInner {
     border-radius: 8px 0 0 8px;
   }
+
   .default {
     font-size: 16px;
     color: #231e5a;
     transition: 0.3s ease;
     cursor: pointer;
   }
+
   .active_cat {
     background-color: #f4422c;
     margin-left: -20px;
@@ -39,11 +44,14 @@
     color: #fff;
     transition: 0.2s;
   }
+
   .animationContainer {
     height: 100%;
   }
+
   .subcat {
     position: relative;
+
     &:before {
       content: '';
       display: block;
@@ -57,15 +65,19 @@
       transition: 0.3s;
     }
   }
+
   .active_sub {
     color: #f4422c;
+
     &::before {
       transform: translateY(-50%) scale(1);
     }
   }
+
   .children_cat {
     transition: 0.2s;
     position: relative;
+
     &::before {
       content: '';
       display: block;
@@ -78,9 +90,11 @@
       transform: translateY(-50%) scale(0);
       transition: 0.3s;
     }
+
     &:hover::before {
       transform: translateY(-50%) scale(1);
     }
+
     &:hover {
       color: #f4422c;
     }

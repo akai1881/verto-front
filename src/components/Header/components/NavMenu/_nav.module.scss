@@ -9,4 +9,7 @@
   display: inline-block;
   color: $primary-color;
   padding: 0 30px;
+  @media (max-width: 992px) {
+    padding: 0 15px;
+  }
 }

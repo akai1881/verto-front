@@ -1,0 +1,21 @@
+@import './../../../design-tokens/variables';
+
+.wrapper {
+  height: 40px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #f4422c;
+    .innerItem {
+      color: #fff;
+    }
+  }
+  .innerItem {
+    color: #231e5a;
+    font-weight: 500;
+  }
+}

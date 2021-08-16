@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import SwiperCore, { Navigation, Autoplay, Thumbs } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, {useState} from 'react';
+import SwiperCore, {Navigation, Autoplay, Thumbs} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/react';
 
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -16,7 +16,7 @@ SwiperCore.use([Navigation, Autoplay, Thumbs]);
 
 // const data = [
 //   {
-//     img: photo,
+//     img: photo1,
 //     id: 1,
 //   },
 //   {
@@ -24,36 +24,25 @@ SwiperCore.use([Navigation, Autoplay, Thumbs]);
 //     id: 2,
 //   },
 //   {
-//     img: photo,
+//     img: photo3,
 //     id: 3,
 //   },
 //   {
-//     img: photo,
+//     img: photo4,
 //     id: 3,
-//   },
-//   {
-//     img: photo,
-//     id: 4,
 //   },
 // ];
 
-const ProductView = ({ images }) => {
+const ProductView = ({images}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <>
       <div className="swiper-wrap">
-        <Swiper
-          navigation
-          spaceBetween={0}
-          loop
-          slidesPerView={1}
-          autoplay
-          thumbs={{ swiper: thumbsSwiper }}
-        >
+        <Swiper navigation spaceBetween={0} loop slidesPerView={1} autoplay thumbs={{swiper: thumbsSwiper}}>
           {images?.map((image) => (
             <SwiperSlide>
-              <img className={styles.mainImg} src={image.image} alt="" />
+              <img className={styles.mainImg} src={image.image} alt=""/>
             </SwiperSlide>
           ))}
           {/* <SwiperSlide>
@@ -75,9 +64,9 @@ const ProductView = ({ images }) => {
             spaceBetween={6}
             slidesPerView={4}
           >
-            {images.map((image) => (
+            {images?.map((image) => (
               <SwiperSlide>
-                <img className={styles.mainImg} src={image.image} alt="" />
+                <img className={styles.mainImg} src={image.image} alt=""/>
               </SwiperSlide>
             ))}
           </Swiper>

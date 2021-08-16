@@ -8,6 +8,11 @@ export const modalSlice = createSlice({
     subCategoryIndex: null,
     isCategoryOpen: false,
     isSubCategoryOpen: false,
+    isMobile: false,
+    optionsDialog: {
+      open: false,
+      content: null,
+    },
   },
   reducers: {
     setModalVisible: (state) => {
@@ -25,6 +30,17 @@ export const modalSlice = createSlice({
     setSubCategoryClick: (state, action) => {
       state.isSubCategoryOpen = action.payload;
     },
+    setMobile: (state, action) => {
+      state.isMobile = action.payload;
+    },
+    setOpenOptionDialog: (state, action) => {
+      state.optionsDialog.open = action.payload.open;
+      state.optionsDialog.content = action.payload.content;
+    },
+    setCloseOptionsDialog: (state, action) => {
+      state.optionsDialog.open = false;
+      state.optionsDialog.content = null;
+    },
     clearModalState: (state) => {
       state.isCategoryOpen = false;
       state.isSubCategoryOpen = false;
@@ -37,9 +53,12 @@ export const modalSlice = createSlice({
 export const {
   setModalVisible,
   setCategory,
+  setMobile,
   setSubCategory,
+  setOpenOptionDialog,
   setSubCategoryClick,
   setCategoryClick,
+  setCloseOptionsDialog,
   clearModalState,
 } = modalSlice.actions;
 

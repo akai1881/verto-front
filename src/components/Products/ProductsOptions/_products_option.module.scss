@@ -50,6 +50,9 @@
   &__shortInfo {
     color: $primary-color;
     width: 300px;
+    @media (max-width: 576px) {
+      font-size: 11px;
+    }
   }
 
   &__options {
@@ -123,6 +126,37 @@
         margin-left: 16px;
         font-size: 24px;
         font-weight: $title-weight;
+      }
+    }
+  }
+
+  .mobile_price {
+    color: $primary-color;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;  
+  }
+
+  .mobile_col:nth-child(1) {
+    width: 65%;
+  }
+
+  .mobile_col:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+    margin-right: 0;
+    flex: none;
+    width: 100%;
+    &__addToCardBtn {
+      & > span {
+        span {
+          font-size: 17px;
+        }
       }
     }
   }

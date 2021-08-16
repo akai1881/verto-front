@@ -30,8 +30,13 @@ import { useEffect } from 'react';
 import {
   fetchNewProducts,
   fetchPopularProducts,
+  fetchRecentlyView,
   fetchTopCategories,
 } from 'store/slices/productsSlice';
+import { useMediaQuery } from 'react-responsive';
+import { deviceSize } from 'utils/consts';
+import { Suspense } from 'react';
+import Spinner from 'components/UI/Spinner';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -70,8 +75,7 @@ const categoriesMock = [
 const popular = [
   {
     id: 1,
-    title:
-      'Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM) sdafdsafds dsafdsf',
+    title: 'Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM) sdafdsafds dsafdsf',
     status: true,
     min_purchase: 5,
     unity: 'шт',
@@ -140,25 +144,20 @@ const newItems = [
 
 const HomePage = (props) => {
   const dispath = useDispatch();
-  const topCategories = useSelector(
-    ({ products }) => products.categories.topCategories
-  );
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
+  const {topCategories, isLoading: topCategoriesLoading} = useSelector(({ products }) => products.categories);
 
-  const popularProducts = useSelector(
-    ({ products }) => products.popularProducts.data
-  );
+  const {data: popularProducts, isLoading: popularProductsLoading} = useSelector(({ products }) => products.popularProducts);
 
-  const newProducts = useSelector(({ products }) => products.newProducts.data);
+  const {data: newProducts, isLoading: newProductsLoading} = useSelector(({ products }) => products.newProducts);
+  const {data: recentlyView, isLoading: recentlyViewLoading} = useSelector(({ products }) => products.recentlyView);
 
   useEffect(() => {
     dispath(fetchTopCategories());
     dispath(fetchPopularProducts());
     dispath(fetchNewProducts());
+    dispath(fetchRecentlyView());
   }, []);
-
-  useEffect(() => {
-    console.log(topCategories, 'this is top categories');
-  }, [topCategories]);
 
   return (
     <MainLayout>
@@ -166,32 +165,39 @@ const HomePage = (props) => {
       <ProductSection
         ComponentItem={CategoryCard}
         data={topCategories}
+        loading={topCategoriesLoading}
         title="Tоп категории"
         span={4}
-        titleGutter={37}
+        xs={8}
+        autoplay={true}
+        loop={true}
+        perView={3}
+        top={isMobile && 16}
+        md={6}
+        xl={4}
+        titleGutter={isMobile ? 8 : 37}
       />
       <section className={styles.info}>
         <Title level={3} className="title" style={{ marginBottom: 40 }}>
           Как это работает?
         </Title>
-        <Flex>
+        <Flex className={styles.infoFlex}>
           <div className={styles.leftBar}>
             <Title level={4} className={styles.title}>
               Поднимите свой бизнес с GetbyVerto
             </Title>
             <Paragraph className={styles.descr}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat.
             </Paragraph>
           </div>
-          <div style={{ height: '100%' }}>
+          <div className={styles.playerWrapper}>
             <ReactPlayer
               url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-              width="798px"
-              height="450px"
-              // className={styles.react_player}
+              width="100%"
+              height={`${isMobile ? '250px' : '450px'}`}
+              className={styles.reactPlayer}
             />
           </div>
         </Flex>
@@ -199,29 +205,51 @@ const HomePage = (props) => {
       <ProductSection
         ComponentItem={Card}
         data={popularProducts}
+        loading={popularProductsLoading}
         gutter={[26, 16]}
         title="Популярное"
         span={6}
-        titleGutter={40}
+        top={isMobile && 24}
+        xs={12}
+        isCard
+        perView={2}
+        responsive={{ isMobile }}
+        sm={12}
+        md={6}
+        titleGutter={isMobile ? 14 : 40}
       />
       <ProductSection
         ComponentItem={Card}
         data={newProducts}
+        loading={newProductsLoading}
         title="Новинки"
         span={6}
+        perView={2}
+        isCard
+        xs={12}
+        md={6}
+        responsive={{ isMobile }}
         gutter={[26, 16]}
-        top={87}
-        titleGutter={28}
+        top={isMobile ? 24 : 87}
+        titleGutter={isMobile ? 14 : 28}
       />
       <ProductSection
         ComponentItem={Card}
-        data={popular}
-        gutter={[26, 16]}
+        data={recentlyView}
+        loading={recentlyViewLoading}
+        gutter={[26, 26]}
         title="Недавно просмотренные"
         span={6}
-        top={87}
+        xs={12}
+        perView={2}
+        md={8}
+        lg={8}
+        isCard
+        xl={6}
+        responsive={{ isMobile }}
+        top={isMobile ? 24 : 87}
         bottom={95}
-        titleGutter={40}
+        titleGutter={isMobile ? 14 : 40}
       />
     </MainLayout>
   );

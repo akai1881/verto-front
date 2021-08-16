@@ -1,10 +1,14 @@
-import Title from 'antd/lib/typography/Title';
-import FilterBox from 'components/FilterBox/FilterBox';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import PriceFilter from 'components/PriceFilter/PriceFilter';
-import styles from './_sidebar.module.scss';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { deleteURLSearchParam } from 'utils/helpers';
 import clsx from 'clsx';
+
+import FilterBox from 'components/FilterBox/FilterBox';
+import Title from 'antd/lib/typography/Title';
+import PriceFilter from 'components/PriceFilter/PriceFilter';
+
+import styles from './_sidebar.module.scss';
 
 const mockData = [
   {
@@ -46,48 +50,52 @@ const brands = [
   },
   {
     id: 1123,
-    title: 'Samsung',
+    title: 'Xiaomi',
     count: 10000,
   },
   {
     id: 1232,
-    title: 'Apple',
+    title: 'OnePlus',
     count: 25000,
   },
   {
     id: 1231,
-    title: 'Samsung',
+    title: 'Sony',
     count: 10000,
   },
   {
     id: 2124,
-    title: 'Apple',
+    title: 'Nokia',
     count: 25000,
   },
   {
     id: 12351,
-    title: 'Samsung',
+    title: 'Lenovo',
     count: 10000,
   },
   {
     id: 521352,
-    title: 'Apple',
+    title: 'Huawei',
     count: 25000,
   },
   {
     id: 112341,
-    title: 'Samsung',
+    title: 'Oppo',
     count: 10000,
   },
   {
     id: 13412,
-    title: 'Apple',
+    title: 'Google Pixel',
     count: 25000,
   },
 ];
 
 const Sidebar = ({ params }) => {
   const categories = useSelector(({ products }) => products.categories.data);
+  const [search, setSearch] = useState(new URLSearchParams(window.location.search).toString());
+  const [features, setFeatures] = useState([]);
+
+  const history = useHistory();
 
   const { categoryIndex, subCategoryIndex, categoryName } = params;
 
@@ -99,6 +107,69 @@ const Sidebar = ({ params }) => {
     return title === categoryName;
   };
 
+  useEffect(() => {
+    setSearch(new URLSearchParams(window.location.search).toString());
+  }, [params]);
+
+  useEffect(() => {
+    if (categories) {
+      findCategories();
+    }
+  }, [categories]);
+  const handlePriceFilter = () => {};
+
+  // TODO REFACTOR THIS SHIIIIIT
+  const handleCheck = (filter) => {
+    const query = new URLSearchParams(window.location.search);
+
+    let q = query.get('feature');
+
+    if (!q) {
+      q = '';
+    }
+
+    if (!filter.checked) {
+      q = deleteURLSearchParam(query.toString(), filter.title);
+      const last = /feature=(?!.)/gi;
+      if (last.test(q)) {
+        q = '';
+      }
+      history.push(`/goods/${categoryIndex}/${subCategoryIndex}/${categoryName}?${q}`);
+      return;
+    } else {
+      q += '$' + filter.title;
+    }
+
+    query.set('feature', q);
+
+    history.push(`/goods/${categoryIndex}/${subCategoryIndex}/${categoryName}?${query.toString()}`);
+    // if (!filter.checked) {
+    //   const newParams = deleteURLSearchParam(search, filter.title);
+    //   history.push(`/goods/${categoryIndex}/${subCategoryIndex}/${categoryName}?${newParams}`);
+    // } else {
+    //   history.push(
+    //     `/goods/${categoryIndex}/${subCategoryIndex}/${categoryName}?${search ? search + '&' : ''}feature=${
+    //       filter.title
+    //     }`
+    //   );
+    // }
+  };
+
+  const findCategories = () => {
+    const first = categories?.find((item) => item.slug === categoryIndex);
+    const second = first?.children?.find((item) => item.slug === subCategoryIndex);
+
+    const final = second?.children?.find((item) => item.slug === categoryName);
+    setFeatures(final?.features);
+  };
+
+  const handlePriceChange = (price) => {
+    const query = new URLSearchParams(window.location.search);
+    query.set('price_from', price[0]);
+    query.set('price_to', price[1]);
+    history.push(`/goods/${categoryIndex}/${subCategoryIndex}/${categoryName}?${query.toString()}`);
+  };
+
   return (
     <>
       {categories.length > 0 && (
@@ -107,9 +178,7 @@ const Sidebar = ({ params }) => {
             Категория
           </Title>
           <div className={styles.sidebar_text}>Все</div>
-          <div className={styles.sidebar_text}>
-            {findSubCategoryTitle() ?? 'Нет названия категории'}
-          </div>
+          <div className={styles.sidebar_text}>{findSubCategoryTitle() ?? 'Нет названия категории'}</div>
           <ul className={styles.sidebar_list}>
             {mockData.map((item) => (
               <li
@@ -124,11 +193,28 @@ const Sidebar = ({ params }) => {
               </li>
             ))}
           </ul>
-          <FilterBox title="Бренды" data={brands} />
-          <FilterBox title="Модели" data={brands} />
-          <FilterBox title="Объем памяти" data={brands} />
-          <FilterBox title="Размер экрана" data={brands} />
-          <PriceFilter />
+          <PriceFilter onChange={handlePriceChange} />
+          {features?.map((item) => (
+            <FilterBox params={search} title={item.feature_name} data={item.values} handleCheck={handleCheck} />
+          ))}
+          {/* <FilterBox
+            params={search}
+            title="Модели"
+            data={brands}
+            handleCheck={handleCheck}
+          />
+          <FilterBox
+            params={search}
+            title="Объем памяти"
+            data={brands}
+            handleCheck={handleCheck}
+          />
+          <FilterBox
+            params={search}
+            title="Размер экрана"
+            data={brands}
+            handleCheck={handleCheck}
+          /> */}
         </div>
       )}
     </>

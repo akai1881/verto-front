@@ -5,8 +5,11 @@ import ToolBar from './components/ToolBar/ToolBar';
 import MenuBar from './components/MenuBar/MenuBar';
 import { useDispatch } from 'react-redux';
 import { fetchCategories } from 'store/slices/productsSlice';
+import { useMediaQuery } from 'react-responsive';
+import { deviceSize } from 'utils/consts';
 
 export default function Header() {
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,9 +18,9 @@ export default function Header() {
 
   return (
     <div className={styles.header}>
-      <TopBar />
+      {!isMobile && <TopBar />}
       <ToolBar />
-      <MenuBar />
+      {!isMobile && <MenuBar />}
     </div>
   );
 }

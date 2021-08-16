@@ -5,9 +5,9 @@ import { $api } from 'services/api';
 
 export const fetchDetails = createAsyncThunk(
   'productDetails/fetchDetails',
-  async (id, { rejectWithValue, dispatch }) => {
+  async (slug, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await $api.get(`/product/${id}`);
+      const { data } = await $api.get(`/product/${slug}`);
       console.log(data);
       return data;
     } catch (e) {

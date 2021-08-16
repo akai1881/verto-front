@@ -13,6 +13,29 @@
   font-size: 16px;
   color: #fff;
   font-weight: 500;
+  transition: 0.3s;
+  position: relative;
+  &:hover {
+    color: #ffc20e;
+  }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4px;
+    height: 18px;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #ffc20e;
+    left: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s;
+  }
+  &:hover:before {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .title {
@@ -35,26 +58,26 @@
   margin-top: 40px;
 }
 
-.special_link {
-  color: #ffc20e;
-  font-weight: 700;
-  position: relative;
-  &:hover:before {
-    background-color: #40a9ff;
-  }
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 4px;
-    height: 18px;
-    background-color: #ffc20e;
-    left: -13px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: 0.3s;
-  }
-}
+// .special_link {
+//   color: #ffc20e;
+//   font-weight: 700;
+//   position: relative;
+//   &:hover:before {
+//     background-color: #40a9ff;
+//   }
+//   &:before {
+//     content: '';
+//     display: block;
+//     position: absolute;
+//     width: 4px;
+//     height: 18px;
+//     background-color: #ffc20e;
+//     left: -13px;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     transition: 0.3s;
+//   }
+// }
 
 .social_link {
   padding: 5px;
@@ -75,5 +98,49 @@
     color: #ffffff;
     text-align: center;
     font-size: 14px;
+  }
+}
+
+.listMobile {
+  display: flex;
+  position: relative;
+  padding-top: 16px;
+  border-top: 1px solid #8484b7;
+  margin-top: 16px;
+  justify-content: space-between;
+  .linkWrapperMobile {
+    position: absolute;
+    left: 36%;
+    top: 24px;
+    .linkMobile {
+      margin-right: 20px;
+    }
+  }
+  .infoMobile {
+    width: 45%;
+    text-align: right;
+  }
+  .textMobile {
+    color: #fff;
+  }
+}
+
+@media (max-width: 576px) {
+  .bottom {
+    div {
+      font-size: 7px;
+    }
+  }
+  .listMobile {
+    .infoMobile {
+      font-size: 9px;
+    }
+    .linkWrapperMobile {
+      left: 28%;
+      top: 19px;
+    }
+    & > div {
+      align-self: flex-end;
+    }
   }
 }

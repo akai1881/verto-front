@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { $api } from 'services/api';
+import { getQuerySearch } from 'utils/helpers';
 
 // TODO Create category slice and move all related staff there
 
@@ -15,17 +16,14 @@ export const fetchCategories = createAsyncThunk(
   }
 );
 
-export const fetchTopCategories = createAsyncThunk(
-  'products/fetchTopCategories',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await $api.get('/top_category/');
-      return data;
-    } catch (e) {
-      return rejectWithValue(e.response.data);
-    }
+export const fetchTopCategories = createAsyncThunk('products/fetchTopCategories', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await $api.get('/display_top/');
+    return data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
   }
-);
+});
 
 export const fetchPopularProducts = createAsyncThunk(
   'products/fetchPopularProducts',
@@ -40,17 +38,24 @@ export const fetchPopularProducts = createAsyncThunk(
   }
 );
 
-export const fetchNewProducts = createAsyncThunk(
-  'products/fetchNewProducts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await $api.get('/product/');
-      return data;
-    } catch (e) {
-      return rejectWithValue(e.response.data);
-    }
+export const fetchNewProducts = createAsyncThunk('products/fetchNewProducts', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await $api.get('/product/');
+    return data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
   }
-);
+});
+
+export const fetchRecentlyView = createAsyncThunk('products/fetchRecentlyView', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await $api.get('/recently_products/');
+    console.log(data);
+    return data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
+  }
+});
 
 // export const fetchPopularCategories = createAsyncThunk(
 //   'products/fetchPopularCategories',
@@ -65,7 +70,9 @@ export const fetchGoodsByCategory = createAsyncThunk(
   'products/fetchGoodsByCategory',
   async (category, { rejectWithValue }) => {
     try {
-      const { data } = await $api.get(`/product/?category=${category}`);
+      const { data } = await $api.get(
+        `/product/?category=${category}${window.location.search !== '' ? '&' : ''}${getQuerySearch()}`
+      );
       return data;
     } catch (e) {
       return rejectWithValue(e.response.data);
@@ -73,17 +80,31 @@ export const fetchGoodsByCategory = createAsyncThunk(
   }
 );
 
+export const handleSearch = createAsyncThunk('products/handleSearch', async (value, { rejectWithValue }) => {
+  try {
+    const { data } = await $api.get(`/product/?search=${value}`);
+    return data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
+  }
+});
+
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     categories: {
       error: null,
       topCategories: [],
-      topCategoriesLoading: false,
       isLoading: false,
       data: [],
     },
     products: {
+      error: null,
+      count: 0,
+      isLoading: false,
+      data: [],
+    },
+    recentlyView: {
       error: null,
       count: 0,
       isLoading: false,
@@ -99,15 +120,31 @@ export const productsSlice = createSlice({
       isLoading: false,
       error: null,
     },
+    search: {
+      value: '',
+      data: [],
+      loading: '',
+      error: '',
+      open: false,
+    },
+  },
+  reducers: {
+    setSearchValue: (state, action) => {
+      state.search.value = action.payload;
+      state.search.open = action.payload !== '';
+    },
+    setSearchOpen: (state, action) => {
+      state.search.open = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // TOP CATEGORIES
     builder.addCase(fetchTopCategories.pending, ({ categories }, action) => {
-      categories.topCategoriesLoading = true;
+      categories.isLoading = true;
     });
     builder.addCase(fetchTopCategories.fulfilled, ({ categories }, action) => {
       categories.topCategories = action.payload;
-      categories.topCategoriesLoading = false;
+      categories.isLoading = false;
     });
 
     // CATEGORIES
@@ -146,13 +183,10 @@ export const productsSlice = createSlice({
     builder.addCase(fetchPopularProducts.pending, ({ popularProducts }) => {
       popularProducts.isLoading = true;
     });
-    builder.addCase(
-      fetchPopularProducts.fulfilled,
-      ({ popularProducts }, action) => {
-        popularProducts.isLoading = false;
-        popularProducts.data = action.payload.results;
-      }
-    );
+    builder.addCase(fetchPopularProducts.fulfilled, ({ popularProducts }, action) => {
+      popularProducts.isLoading = false;
+      popularProducts.data = action.payload.results;
+    });
 
     // NEW PRODUCTS
 
@@ -163,7 +197,24 @@ export const productsSlice = createSlice({
       newProducts.isLoading = false;
       newProducts.data = action.payload.results;
     });
+
+    // RECENTLY VIEW PRODUCTS
+
+    builder.addCase(fetchRecentlyView.pending, ({ recentlyView }) => {
+      recentlyView.isLoading = true;
+    });
+    builder.addCase(fetchRecentlyView.fulfilled, ({ recentlyView }, action) => {
+      recentlyView.isLoading = false;
+      recentlyView.data = action.payload;
+    });
+
+    // SEARCH VALUE PRODUCTS
+    builder.addCase(handleSearch.fulfilled, ({ search }, action) => {
+      search.data = action.payload.results;
+    });
   },
 });
+
+export const { setSearchValue, setSearchOpen } = productsSlice.actions;
 
 export default productsSlice.reducer;

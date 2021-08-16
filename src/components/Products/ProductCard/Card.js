@@ -1,24 +1,31 @@
 import React from 'react';
-import styles from './_card.module.scss';
-import { Image } from 'antd';
-
-import eyeIconActive from './../../../static/icons/24_eye red_active.svg';
-
-import eyeIconDefault from './../../../static/icons/24_eye yellow_diactive.svg';
-
-import favIconActive from './../../../static/icons/heart.svg';
 import { useHistory } from 'react-router-dom';
 
-const Card = ({ item }) => {
+import { Image } from 'antd';
+
+import { ReactComponent as EyeIconActive } from './../../../static/icons/24_eye red_active.svg';
+import { ReactComponent as EyeIconDefault } from './../../../static/icons/24_eye yellow_diactive.svg';
+import { ReactComponent as FavIconActive } from './../../../static/icons/heart-yellow.svg';
+
+import styles from './_card.module.scss';
+import clsx from 'clsx';
+
+const Card = ({ item, responsive }) => {
   const history = useHistory();
-  // console.log(item);
 
   const handleClick = () => {
-    history.push(`/product/${item.id}`);
+    history.push(`/product/${item.slug}`);
   };
 
   return (
-    <div className={styles.wrapper} onClick={handleClick}>
+    <div
+      className={clsx({
+        [styles.wrapper]: true,
+        [styles.laptop]: responsive.isLaptop,
+        [styles.mobile]: responsive.isMobile,
+      })}
+      onClick={handleClick}
+    >
       <div className={styles.media}>
         <Image
           src={
@@ -29,23 +36,21 @@ const Card = ({ item }) => {
           width={'100%'}
           height="100%"
         />
-        {/* <div className={styles.actions}>
-          <button
-            className={`${styles.seen} ${item.hasSeen ? 'has_seen' : ''}`}
-          ></button>
-          <button></button>
-        </div> */}
+        <div className={styles.actions}>
+          <button className={`${styles.seen} ${item.hasSeen ? 'has_seen' : ''} ${styles.actionBtn}`}>
+            <EyeIconDefault />
+          </button>
+          <button className={styles.actionBtn}>
+            <FavIconActive />
+          </button>
+        </div>
       </div>
       <div className={styles.body}>
         <div className={styles.title}>{item.title}</div>
       </div>
       <div className={styles.bottom}>
         <>
-          <div
-            className={`${item.status ? styles.inStock : ''} ${
-              styles.default
-            } ${styles.align}`}
-          >
+          <div className={`${item.status ? styles.inStock : ''} ${styles.default} ${styles.align}`}>
             {item.status ? 'В наличии' : 'Нет в наличии'}
           </div>
           <div className={`${styles.default} ${styles.textAlign}`}>

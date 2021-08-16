@@ -22,7 +22,7 @@
 }
 
 .price_input {
-  width: 75px;
+  width: 80px;
   display: inline-block;
   margin: 0 9px;
   border: 1px solid #8484b7;
@@ -30,5 +30,8 @@
   padding: 8px;
   &::placeholder {
     color: #8484b7;
+  }
+  &:last-child {
+    width: 100px;
   }
 }

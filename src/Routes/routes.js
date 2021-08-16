@@ -4,7 +4,9 @@ import HomePage from 'pages/Home/HomePage';
 import LoginPage from 'pages/Login/LoginPage';
 import ProductsDetail from 'pages/ProductsDetail/ProductsDetail';
 import RegisterPage from 'pages/Register/RegisterPage';
+import CartPage from "../pages/CartPage/CartPage";
 import {
+  CART_ROUTE,
   COMPANY_REGISTER,
   GOODS_ROUTE,
   HOME_ROUTE,
@@ -49,5 +51,11 @@ export const publicRoutes = [
     exact: true,
     name: 'Детали продукта',
     Component: ProductsDetail,
+  },
+  {
+    path: CART_ROUTE,
+    exact: true,
+    name: 'Корзина',
+    Component: CartPage,
   },
 ];

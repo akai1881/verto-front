@@ -1,7 +1,28 @@
 .wrapper {
   padding: 96px 0;
+
   .descrText {
     font-size: 16px;
     color: #231e5a;
+  }
+
+  .flex {
+    @media (max-width: 992px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .swiperWrapper {
+    @media (max-width: 1200px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 0;
   }
 }

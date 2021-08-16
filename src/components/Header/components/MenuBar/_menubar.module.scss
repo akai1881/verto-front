@@ -25,4 +25,13 @@
       }
     }
   }
+  @media (max-width: 1200px) {
+    padding: calc(8px - 14px);
+    .linkFlex {
+      flex-wrap: wrap;
+    }
+    .link {
+      margin-top: 14px;
+    }
+  }
 }

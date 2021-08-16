@@ -1,24 +1,46 @@
-import React, { useState } from 'react';
-import styles from './_search-input.module.scss';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleSearch, setSearchOpen, setSearchValue } from 'store/slices/productsSlice';
+import useDebounce from 'hooks/useDebounce';
+import clsx from 'clsx';
+
 import { ReactComponent as SearchIcon } from './../../static/icons/search.svg';
-import { useSelector } from 'react-redux';
+
+import styles from './_search-input.module.scss';
 
 const SearchInput = ({ radius }) => {
   const open = useSelector(({ modal }) => modal.open);
+  const openSearch = useSelector(({ products }) => products.search.open);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState('');
+  const value = useDebounce(search, 350);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    if (search) {
+      dispatch(handleSearch(value));
+      dispatch(setSearchOpen(true));
+    }
+  }, [value]);
+
   const handleInput = (e) => {
-    setSearch(e.target.value);
+    const value = e.target.value;
+
+    setSearch(value);
+    dispatch(setSearchValue(value));
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${styles.search} ${open ? styles.active : ''}`}
+      className={clsx({
+        [styles.search]: true,
+        [styles.active]: open,
+        [styles.activeSearch]: openSearch,
+      })}
       style={{
         borderTopLeftRadius: radius[0],
         borderTopRightRadius: radius[1],

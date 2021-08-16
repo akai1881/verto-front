@@ -4,4 +4,7 @@
   font-size: $title-font !important;
   color: $primary-color !important;
   font-weight: $title-weight !important;
+  @media (max-width: 768px) {
+    font-size: 25px !important;
+  }
 }

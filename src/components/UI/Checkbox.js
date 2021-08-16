@@ -1,21 +1,12 @@
 import React from 'react';
 import styles from './_checkbox.module.scss';
 import { ReactComponent as Check } from './../../static/icons/Сгруппировать 498.svg';
+import InputCheckbox from './InputCheckbox';
 
-const Checkbox = ({ title, count, onChange, value }) => {
+const Checkbox = ({ title, count, onChange, checked }) => {
   return (
     <label className={styles.checkbox}>
-      <span className={styles.checkbox_input}>
-        <input
-          type="checkbox"
-          name="checkbox"
-          value={value}
-          onChange={(e) => onChange(e.target.checked)}
-        />
-        <span className={styles.checkbox_control}>
-          <Check />
-        </span>
-      </span>
+      <InputCheckbox title={title} onChange={onChange} checked={checked} />
       {count && title && (
         <span className={styles.radio_label}>
           {title} <span>({count})</span>

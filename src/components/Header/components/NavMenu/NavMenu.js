@@ -29,7 +29,7 @@ const Nav = () => {
   return (
     <div className={styles.wrapper}>
       <Flex>
-        {mock.map(({ id, text }) => (
+        {mock.map(({id, text}) => (
           <a href="#" className={styles.link} key={id}>
             {text}
           </a>

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from './_products_option.module.scss';
-
 import { ReactComponent as StockIcon } from './../../../static/icons/16_appruved ligh.svg';
 import { ReactComponent as BuyIcon } from './../../../static/icons/16_buyed ligh.svg';
 import { ReactComponent as QuestionIcon } from './../../../static/icons/24_question light.svg';
@@ -14,6 +12,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from 'components/UI/Button';
 import productsSlice from 'store/slices/productsSlice';
+
+import styles from './_products_option.module.scss';
+import { useMediaQuery } from 'react-responsive';
+import { deviceSize } from 'utils/consts';
 
 const memory = {
   title: 'memory',
@@ -62,19 +64,12 @@ const color = {
   ],
 };
 
-// const schema = yup.object({
-//   count: yup.number().min(1).positive('Кол-во не должно быть меньше 1'),
-// });
-
 const ProductOptions = ({ product }) => {
   const [colorChoose, setColorChoose] = useState(null);
   const [chooseOption, setChooseOption] = useState(null);
   const [productCount, setProducCount] = useState(1);
-  // const {
-  //   register,
-  //   handSubmit,
-  //   formState: { errors },
-  // } = useForm({ resolver: yupResolver(schema) });
+
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
 
   const handleColorChoose = (id) => {
     setColorChoose(id);
@@ -133,22 +128,33 @@ const ProductOptions = ({ product }) => {
   return (
     <div className={styles.product}>
       <h1 className={styles.product__title}>{product.title}</h1>
-      <Flex justify="space-between">
-        <Flex align="center">
-          <span class={styles.product__icon}>
-            <StockIcon />
-          </span>
-          <span className={styles.product__stock}>
-            В наличии {product.quantity} {product.unity}.
-          </span>
-        </Flex>
-        <Flex align="center">
-          <span class={styles.product__icon}>
-            <BuyIcon />
-          </span>
-          <span className={styles.product__sold}>Продано 101</span>
-        </Flex>
-        <div className={styles.product__article}>Артикул: 025 ASE</div>
+      {isMobile && <div className={styles.mobile_price}>{product.price} ₸</div>}
+      <Flex justify="space-between" align="stretch">
+        <div className={styles.mobile_col}>
+          {/* {isMobile && ( */}
+          <div className={styles.product__article}>
+            Минимальное кол-во для покупки {product.min_purchase} {product.unity}.
+          </div>
+          {/* )} */}
+          <Flex align="center">
+            <span class={styles.product__icon}>
+              <StockIcon />
+            </span>
+            <span className={styles.product__stock}>
+              В наличии {product.quantity} {product.unity}.
+            </span>
+          </Flex>
+        </div>
+
+        <div className={styles.mobile_col}>
+          <Flex align="center">
+            <span class={styles.product__icon}>
+              <BuyIcon />
+            </span>
+            <span className={styles.product__sold}>Продано 101</span>
+          </Flex>
+          <div className={styles.product__article}>Артикул: 025 ASE</div>
+        </div>
       </Flex>
       <div className={styles.product__mainInfo}>
         <div className={styles.product__infoCard}>
@@ -217,7 +223,7 @@ const ProductOptions = ({ product }) => {
           </div>
         </div>
         <div className={styles.product__infoCard}>
-          <h3 className={styles.product__infoTitle}>Цена</h3>
+          <h3 className={styles.product__infoTitle}>{isMobile ? 'Общая стоимость' : 'Цена'}</h3>
           <div className={styles.product__price}>
             <span>{product.price} ₸</span>
           </div>

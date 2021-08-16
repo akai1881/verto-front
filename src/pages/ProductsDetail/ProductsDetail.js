@@ -4,38 +4,45 @@ import ProductView from 'components/Products/ProductView/ProductView';
 import ShopInfo from 'components/ShopInfo/ShopInfo';
 import Flex from 'components/UI/Flex';
 import MainLayout from 'layouts/MainLayout';
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
+import React, {useEffect, useRef, useState} from 'react';
+import {useParams} from 'react-router';
 import styles from './_product-detail.module.scss';
-import { Image, Tabs } from 'antd';
+import {Image, Tabs} from 'antd';
 
 import img1 from './../../static/images/1.jpg';
 import img2 from './../../static/images/2.jpg';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDetails } from 'store/slices/productDetailsSlice';
+import {useLocation} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchDetails} from 'store/slices/productDetailsSlice';
+import {$api} from "../../services/api";
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 const ProductsDetail = () => {
   const params = useParams();
 
   const dispatch = useDispatch();
 
-  const { data: product, isLoading } = useSelector(
-    ({ productDetails }) => productDetails
-  );
+  const {data: product, isLoading} = useSelector(({productDetails}) => productDetails);
 
-  const { pathname } = useLocation();
+  const elemHeight = useRef()
+
+  const [height, setHeight] = useState(0)
+
+  // const categories = useSelector(({ products }) => products.categories.data);
+
+  // const getBreadCumbs = (slug, array = [], category) => {
+  //   if (catego)
+  // }
+
+  const {pathname} = useLocation();
 
   useEffect(() => {
     dispatch(fetchDetails(params.productId));
-  }, []);
-
-  useEffect(() => {
-    console.log(product);
-    console.log(isLoading);
-  }, [product, isLoading]);
+    if (elemHeight.current) {
+      setHeight(elemHeight.current.clientHeight)
+    }
+  }, [params, elemHeight]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,14 +52,21 @@ const ProductsDetail = () => {
     <MainLayout>
       <div className={styles.wrapper}>
         <>
+          {/* <BreadCrumbs params={params} /> */}
           {isLoading ? (
-            'Загрука...'
+            <div style={{width: '100%', height, background: 'red'}}>
+
+            </div>
           ) : (
-            <Flex>
-              <ProductView images={product?.images} />
-              <ProductOptions product={product} />
-              <ShopInfo />
-            </Flex>
+            <div ref={elemHeight}>
+              <Flex className={styles.flex}>
+                <div className={styles.swiperWrapper}>
+                  <ProductView images={product?.images}/>
+                </div>
+                <ProductOptions product={product}/>
+                <ShopInfo/>
+              </Flex>
+            </div>
           )}
 
           <div className="tab-custom">
@@ -61,11 +75,11 @@ const ProductsDetail = () => {
                 <p className={styles.descrText}>{product?.description}</p>
 
                 <div>
-                  <Image preview={false} src={img1}></Image>
+                  <Image preview={false} src={img1}/>
                 </div>
 
                 <div>
-                  <Image preview={false} src={img2}></Image>
+                  <Image preview={false} src={img2}/>
                 </div>
               </TabPane>
               <TabPane tab="Характеристики" key="2">
@@ -77,7 +91,6 @@ const ProductsDetail = () => {
             </Tabs>
           </div>
         </>
-        {/* <BreadCrumbs params={params} /> */}
       </div>
     </MainLayout>
   );

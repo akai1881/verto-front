@@ -9,6 +9,9 @@
   &.active {
     border-color: #f4422c;
   }
+  &.activeSearch {
+    border-bottom-right-radius: 0px !important;
+  }
   &_input {
     border: none;
     background: none;

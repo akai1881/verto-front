@@ -2,6 +2,7 @@
 .wrapper {
   width: 270px;
   height: 100%;
+  flex: 1 1 auto;
   border-radius: 8px;
   background-color: #fff;
   display: flex;
@@ -9,6 +10,18 @@
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0.4px 0.4px 16px #d4daec;
+}
+
+.laptop {
+  @media all and (max-width: 992px) {
+    width: 100%;
+  }
+}
+
+.mobile {
+  @media all and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .media {
@@ -25,7 +38,7 @@
 
 .body {
   padding: 24px 16px 14px 16px;
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
@@ -33,7 +46,7 @@
 .title {
   font-size: 16px;
   color: $primary-color;
-  flex: 1;
+  flex: 1 1 auto;
   line-height: 22px;
 }
 
@@ -62,4 +75,34 @@
 
 .actions {
   position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  .actionBtn {
+    background-color: transparent;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.788);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:first-child {
+      margin-right: 8px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .bottom {
+    flex-wrap: wrap-reverse;
+    .default {
+      text-align: left;
+      &:nth-child(2) {
+        margin-bottom: 8px;
+      }
+    }
+  }
 }

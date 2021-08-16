@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './_lang-switcher.module.scss';
-import { Select } from 'antd';
-import { ReactComponent as ArrowDown } from './../../../../static/icons/arrow-down.svg';
+import {Select} from 'antd';
+import {ReactComponent as ArrowDown} from './../../../../static/icons/arrow-down.svg';
 
-const { Option } = Select;
+const {Option} = Select;
 
 const mock = [
   {
@@ -26,9 +26,9 @@ const LangSwitcher = () => {
       defaultValue="RU"
       bordered={false}
       className={styles.lang}
-      suffixIcon={<ArrowDown />}
+      suffixIcon={<ArrowDown/>}
     >
-      {mock.map(({ id, lang }) => (
+      {mock.map(({id, lang}) => (
         <Option key={id} value={lang}>
           {lang}
         </Option>

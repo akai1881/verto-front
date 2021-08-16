@@ -71,15 +71,9 @@ const MenuBar = () => {
   return (
     <Container>
       <div className={styles.wrapper}>
-        <Flex>
+        <Flex className={styles.linkFlex}>
           {mock.map(({ id, title, path }) => (
-            <NavLink
-              to={path}
-              exact
-              key={id}
-              className={styles.link}
-              activeClassName={styles.active}
-            >
+            <NavLink to={path} exact key={id} className={styles.link} activeClassName={styles.active}>
               {title}
             </NavLink>
           ))}

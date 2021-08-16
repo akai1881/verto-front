@@ -1,5 +1,6 @@
-import Flex from 'components/UI/Flex';
 import React from 'react';
+import Flex from 'components/UI/Flex';
+
 import { ReactComponent as BestSellerIcon } from './../../static/icons/32_Best Seller.svg';
 import { ReactComponent as MoneyBackIcon } from './../../static/icons/32_Money back.svg';
 import { ReactComponent as EnterShopIcon } from './../../static/icons/32_Entrance shop blue.svg';
@@ -16,9 +17,7 @@ const ShopInfo = () => {
     <div className={styles.info}>
       <div className={styles.info__garant}>
         <div className={styles.info__garant__header}>
-          <h2 className={styles.info__garant__headerTitle}>
-            Покупайте с уверенностью
-          </h2>
+          <h2 className={styles.info__garant__headerTitle}>Покупайте с уверенностью</h2>
         </div>
         <div className={styles.info__garant__body}>
           <div className={styles.info__flex}>
@@ -26,12 +25,8 @@ const ShopInfo = () => {
               <BestSellerIcon />
             </span>
             <div className={styles.info__garant__left}>
-              <h3 className={styles.info__garant__bodyTitle}>
-                Лучший продавец
-              </h3>
-              <p className={styles.info__garant__bodyText}>
-                Надежный и ответственный продавец, качественный сервис
-              </p>
+              <h3 className={styles.info__garant__bodyTitle}>Лучший продавец</h3>
+              <p className={styles.info__garant__bodyText}>Надежный и ответственный продавец, качественный сервис</p>
             </div>
           </div>
           <div className={styles.info__flex}>
@@ -39,12 +34,8 @@ const ShopInfo = () => {
               <MoneyBackIcon />
             </span>
             <div className={styles.info__garant__left}>
-              <h3 className={styles.info__garant__bodyTitle}>
-                Гарантия возвата денег
-              </h3>
-              <p className={styles.info__garant__bodyText}>
-                Вы получите ваш заказ, либо мы возместим его стоимость
-              </p>
+              <h3 className={styles.info__garant__bodyTitle}>Гарантия возвата денег</h3>
+              <p className={styles.info__garant__bodyText}>Вы получите ваш заказ, либо мы возместим его стоимость</p>
             </div>
           </div>
         </div>
@@ -82,9 +73,7 @@ const ShopInfo = () => {
             <span>
               <HeartBlueIcon />
             </span>
-            <div className={styles.shop__actionTitle}>
-              Сохранить этого продавца
-            </div>
+            <div className={styles.shop__actionTitle}>Сохранить этого продавца</div>
           </div>
 
           <div className={styles.shop__action}>

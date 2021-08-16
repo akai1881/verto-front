@@ -14,4 +14,8 @@
     min-width: 184px;
     color: $primary-color !important;
   }
+  &_options {
+    cursor: pointer;
+    padding: 0 10px;
+  }
 }

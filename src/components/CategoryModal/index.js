@@ -1,6 +1,4 @@
-import Modal from 'antd/lib/modal/Modal';
 import React from 'react';
-import styles from './_modal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearModalState,
@@ -10,23 +8,23 @@ import {
   setSubCategory,
   setSubCategoryClick,
 } from 'store/slices/modalSlice';
+
+import Modal from 'antd/lib/modal/Modal';
 import { Fade } from 'react-awesome-reveal';
 import { useHistory } from 'react-router-dom';
 import { Skeleton } from 'antd';
 import clsx from 'clsx';
 
-const CategoryModal = () => {
-  const {
-    open,
-    isCategoryOpen,
-    isSubCategoryOpen,
-    categoryIndex,
-    subCategoryIndex,
-  } = useSelector(({ modal }) => modal);
+import styles from './_modal.module.scss';
 
-  const { data: categories, loading } = useSelector(
-    ({ products }) => products.categories
+const CategoryModal = () => {
+  const { open, isCategoryOpen, isSubCategoryOpen, categoryIndex, subCategoryIndex } = useSelector(
+    ({ modal }) => modal
   );
+
+  const { data: categories, loading } = useSelector(({ products }) => products.categories);
+
+  console.log(categories)
 
   const dispatch = useDispatch();
 
@@ -35,6 +33,8 @@ const CategoryModal = () => {
   const handleOpenModal = () => {
     dispatch(setModalVisible());
   };
+
+  // TODO refactor modal logic
 
   const handleCloseModal = () => {
     dispatch(setModalVisible());
@@ -45,31 +45,31 @@ const CategoryModal = () => {
     dispatch(clearModalState());
   };
 
-  const handleCategoryClick = (index) => {
+  const handleCategoryClick = (category) => {
     return () => {
-      if (categoryIndex !== index) {
+      if (categoryIndex !== category.index) {
         dispatch(setSubCategoryClick(null));
         dispatch(setSubCategory(false));
         dispatch(setCategoryClick(true));
-        dispatch(setCategory(index));
+        dispatch(setCategory(category));
       } else {
-        dispatch(setCategory(index));
+        dispatch(setCategory(category));
         dispatch(setCategoryClick(true));
       }
     };
   };
 
-  const handleSubCategoryClick = (index) => {
+  const handleSubCategoryClick = (subCategory) => {
     return () => {
       dispatch(setSubCategoryClick(true));
-      dispatch(setSubCategory(index));
+      dispatch(setSubCategory(subCategory));
     };
   };
 
-  const handleCategoryRedirect = (title) => {
+  const handleCategoryRedirect = (slug) => {
     return () => {
       dispatch(setModalVisible(false));
-      history.push(`/goods/${categoryIndex}/${subCategoryIndex}/${title}`);
+      history.push(`/goods/${categoryIndex.slug}/${subCategoryIndex.slug}/${slug}`);
     };
   };
 
@@ -90,11 +90,11 @@ const CategoryModal = () => {
             <div className={styles.columnInner}>
               {categories.map((first, index) => (
                 <div
-                  key={first.id}
-                  onClick={handleCategoryClick(index)}
+                  key={first.slug}
+                  onClick={handleCategoryClick({ slug: first.slug, index })}
                   className={clsx({
                     [styles.default]: true,
-                    [styles.active_cat]: categoryIndex === index,
+                    [styles.active_cat]: categoryIndex?.index === index,
                   })}
                 >
                   {first.title}
@@ -106,29 +106,26 @@ const CategoryModal = () => {
             <>
               <div className={styles.divider} />
               <div className={styles.column}>
-                <Fade
-                  direction="left"
-                  className={styles.animationContainer}
-                  duration={380}
-                >
+                <Fade direction="left" className={styles.animationContainer} duration={380}>
                   <div className={styles.columnInner}>
                     <Fade direction="down" cascade duration={280}>
                       <>
-                        {categories[categoryIndex].children.map(
-                          (item, index) => (
-                            <div
-                              key={item.id}
-                              onClick={handleSubCategoryClick(index)}
-                              className={clsx({
-                                [styles.default]: true,
-                                [styles.subcat]: true,
-                                [styles.active_sub]: subCategoryIndex === index,
-                              })}
-                            >
-                              {item.title}
-                            </div>
-                          )
-                        )}
+                        {categories[categoryIndex.index].children.map((item, index) => (
+                          <div
+                            key={item.slug}
+                            onClick={handleSubCategoryClick({
+                              slug: item.slug,
+                              index,
+                            })}
+                            className={clsx({
+                              [styles.default]: true,
+                              [styles.subcat]: true,
+                              [styles.active_sub]: subCategoryIndex?.index === index,
+                            })}
+                          >
+                            {item.title}
+                          </div>
+                        ))}
                       </>
                     </Fade>
                   </div>
@@ -140,20 +137,14 @@ const CategoryModal = () => {
             <>
               <div className={styles.divider} />
               <div className={styles.column}>
-                <Fade
-                  direction="left"
-                  className={styles.animationContainer}
-                  duration={300}
-                >
+                <Fade direction="left" className={styles.animationContainer} duration={300}>
                   <div className={styles.columnInner}>
                     <Fade direction="down" cascade duration={280}>
                       <>
-                        {categories[categoryIndex].children[
-                          subCategoryIndex
-                        ].children.map((item) => (
+                        {categories[categoryIndex.index].children[subCategoryIndex.index].children.map((item) => (
                           <div
-                            key={item.id}
-                            onClick={handleCategoryRedirect(item.title)}
+                            key={item.slug}
+                            onClick={handleCategoryRedirect(item.slug)}
                             className={`${styles.default} ${styles.children_cat}`}
                           >
                             {item.title}
@@ -169,10 +160,7 @@ const CategoryModal = () => {
         </div>
       ) : (
         <div className={styles.spinner}>
-          <Skeleton
-            active
-            paragraph={{ rows: 5, width: [...Array(5).fill('100%')] }}
-          />
+          <Skeleton active paragraph={{ rows: 5, width: [...Array(5).fill('100%')] }} />
         </div>
       )}
     </Modal>

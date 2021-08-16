@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { BASE_API_URL } from 'utils/consts';
 import { $api, $auth } from './api';
 
 export default class AuthService {
@@ -7,5 +9,11 @@ export default class AuthService {
 
   static async registration(newUser) {
     return $api.post('/register/', newUser);
+  }
+
+  static async refresh(refresh) {
+    return axios.post(`${BASE_API_URL}/refresh/`, {
+      refresh,
+    });
   }
 }

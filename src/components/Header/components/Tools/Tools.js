@@ -78,9 +78,8 @@ const Tools = () => {
     <Flex align="center">
       {mock.map(({ id, Icon, title }) => {
         if (title === 'Профиль') {
-          console.log('worked');
           return (
-            <Dropdown overlay={menu} trigger={['click']}>
+            <Dropdown overlay={menu} trigger={['click']} key={id}>
               <Tooltip key={id} placement="top" title={title}>
                 <div key={id} className={styles.tool}>
                   <Icon />

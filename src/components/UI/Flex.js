@@ -1,10 +1,15 @@
 import React from 'react';
 import './../../index.css';
 
-const Flex = ({ children, align = 'flex-start', justify = 'flex-start' }) => {
+const Flex = ({
+  children,
+  align = 'flex-start',
+  justify = 'flex-start',
+  className = '',
+}) => {
   return (
     <div
-      className="flex"
+      className={`flex ${className}`}
       style={{ alignItems: align, justifyContent: justify }}
     >
       {children}

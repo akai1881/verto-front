@@ -8,12 +8,11 @@ import { ReactComponent as ArrowDisactive } from './../../static/icons/16_arrow_
 import { useState } from 'react';
 import { Collapse } from 'antd';
 import CustomScrollbar from 'components/CustomScrollbar/CustomScrollbar';
+import { isCheckedFilter } from 'utils/helpers';
 
 const { Panel } = Collapse;
 
-const FilterBox = ({ data, title }) => {
-  const [open, setOpen] = useState(true);
-
+const FilterBox = ({ data, title, handleCheck, params }) => {
   return (
     <div className={styles.filter}>
       <div className={styles.filter_divider} />
@@ -27,9 +26,7 @@ const FilterBox = ({ data, title }) => {
               <ArrowActive
                 className={styles.arrow}
                 style={{
-                  transform: isActive
-                    ? 'translateY(-50%) rotate(180deg)'
-                    : 'translateY(-50%) rotate(0deg)',
+                  transform: isActive ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%) rotate(0deg)',
                 }}
               />
             );
@@ -43,13 +40,17 @@ const FilterBox = ({ data, title }) => {
             }
             key="1"
           >
-            {/* <div className={styles.content}> */}
             <CustomScrollbar style={{ width: 500, height: 300 }}>
               {data.map((item) => (
-                <Checkbox key={item.id} title={item.title} count={item.count} />
+                <Checkbox
+                  key={item.id}
+                  title={item.value}
+                  count={item.feature}
+                  checked={isCheckedFilter(item.value, params)}
+                  onChange={handleCheck}
+                />
               ))}
             </CustomScrollbar>
-            {/* </div> */}
           </Panel>
         </Collapse>
       </div>
