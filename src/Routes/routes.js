@@ -1,4 +1,6 @@
 import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
+import NewsContent from 'components/NewsContent/NewsContent';
+import RewiewsContent from 'components/RewiesContent/RewiewsContent';
 import CompanyRegister from 'pages/CompanyRegister/CompanyRegister';
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
@@ -14,7 +16,9 @@ import {
   LOGIN_ROUTE,
   PRODUCT_DETAILS,
   REGISTER_ROUTE,
-  ABOUT_US_ROUTE
+  ABOUT_US_ROUTE,
+  NEWS_ROUTE,
+  REVIEWS_ROUTE
 } from '../utils/consts';
 
 export const publicRoutes = [
@@ -66,5 +70,19 @@ export const publicRoutes = [
     name: 'О нас',
     Component: AboutUsContent,
   },
+  {
+    path: NEWS_ROUTE,
+    exact: true,
+    name: 'Новости',
+    Component: NewsContent,
+  },
+  {
+    path: REVIEWS_ROUTE,
+    exact: true,
+    name: 'Отзывы',
+    Component: RewiewsContent,
+  },
+
 
 ];
+

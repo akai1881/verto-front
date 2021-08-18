@@ -17,11 +17,15 @@ import Arrow from './images/arrow.svg';
 
 
 import './styles.scss';
+import Footer from 'components/Footer';
+import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
 
 const AboutUsContent = () => {
     return (
+        <>
         <Container>
             <Header />
+            <MenuBarNews />
             <div><img src={AboutUsImg}/></div>
             <div className='about-us-content'>
             <div><span>15 тыс +</span>
@@ -47,8 +51,9 @@ const AboutUsContent = () => {
                  <div><img src={LastestNews3}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
                  <div><img src={LastestNews4}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
              </div>
-             
         </Container>
+        <Footer/>
+        </>
     );
 };
 

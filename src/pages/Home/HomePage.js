@@ -154,32 +154,14 @@ const HomePage = (props) => {
 
   const {data: newProducts, isLoading: newProductsLoading} = useSelector(({ products }) => products.newProducts);
   const {data: recentlyView, isLoading: recentlyViewLoading} = useSelector(({ products }) => products.recentlyView);
-  const [ menuBarNews, setMenuBarNews ] = React.useState("О нас");
   useEffect(() => {
     dispath(fetchTopCategories());
     dispath(fetchPopularProducts());
     dispath(fetchNewProducts());
     dispath(fetchRecentlyView());
   }, []);
-  let aboutUsItems = [
-    {
-      component:  <AboutUsContent/>,
-      title: "О нас"
-    },
-    {
-      component:  <NewsContent/>,
-      title: "Новости"
-    }
-  ];
-  function menuBarNewsShowItem () {
-   let item =  aboutUsItems.filter((item) => item.title === menuBarNews);
-   return item[0].component;
-  }
   return (
     <MainLayout>
-      <MenuBarNews menuBarNews={menuBarNews} setMenuBarNews={setMenuBarNews}/>
-      { menuBarNewsShowItem () }
-     
       <HeroCarousel />
       <ProductSection
         ComponentItem={CategoryCard}

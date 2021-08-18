@@ -9,10 +9,16 @@ import AllNewsImg5 from './images/all- news-4-1.png';
 
 import './NewsContent.scss';
 import { Pagination } from 'antd';
+import Container from 'components/UI/Container';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
 
 const NewsContent = () => {
     return (
-        <div>
+       <> <Container>
+            <Header/>
+            <MenuBarNews />
             <div className='all-news-title'><span>Все новости</span></div>
             <div className='all-news'>
                 <p className='all-news-count'>1 000  статей</p>
@@ -95,7 +101,10 @@ const NewsContent = () => {
                 <div className='all-news-pagination'><Pagination defaultCurrent={1} total={50} /></div>
                 
             </div>
-        </div>
+            
+        </Container>
+        <Footer />
+        </>
     );
 };
 
