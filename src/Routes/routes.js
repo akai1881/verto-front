@@ -1,5 +1,4 @@
 import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
-import ContactsContent from 'components/ContactsContent/ContactsContent';
 import NewsContent from 'components/NewsContent/NewsContent';
 import RewiewsContent from 'components/RewiesContent/RewiewsContent';
 import CompanyRegister from 'pages/CompanyRegister/CompanyRegister';
