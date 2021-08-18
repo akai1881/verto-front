@@ -1,0 +1,47 @@
+.rewiwes-title {
+    background: url('./images/bcg.png');
+    height: 164px;
+    display: flex;
+    align-items: center;
+    div {
+        span {
+            display: block;
+            color: #231E5A;
+            font-weight: 700;
+            font-size: 40px;
+        }
+        p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #231E5A;
+        }
+    }
+}
+hr {
+    color: grey;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+.all-reviews-is-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    span {
+        display: block;
+        color: #8484B7;
+        font-weight: 700;
+        font-size: 44px;
+    }
+    button {
+        background-color: #3E5CF2;
+        color: #FFFFFF;
+        box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+        border-radius: 8px;
+        width: 370px;
+        height: 80px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+}

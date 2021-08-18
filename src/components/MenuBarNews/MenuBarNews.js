@@ -11,7 +11,7 @@ const mock = [
     id: 1,
     title: 'О нас',
     active: true,
-    path: '/',
+    path: '/about-us',
   },
   {
     id: 2,
@@ -33,15 +33,15 @@ const mock = [
   },
 ];
 
-const MenuBarNews = ({ menuBarNews, setMenuBarNews }) => {
+const MenuBarNews = () => {
   return (
     <Container>
       <div>
         <div className='menu-bar-news'>
           {mock.map(({ id, title, path, active }) => (
-            <div onClick={()=> setMenuBarNews(title)} className={menuBarNews === title ?'menu-bar-news-item-active': 'menu-bar-news-item' } key={id}>
+            <NavLink to={path} exact className={window.location.pathname === path ?'menu-bar-news-item-active': 'menu-bar-news-item' } key={id}>
               {title}
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>
