@@ -16,6 +16,7 @@ export const PRODUCT_DETAILS = '/product/:productId';
 
 export const CART_ROUTE = '/cart'
 
+export const ABOUT_US_ROUTE = '/about-us'
 /*<==================== PHONE VALIDATION REGEX ====================> */
 
 export const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gi;

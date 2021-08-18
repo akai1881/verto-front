@@ -1,3 +1,4 @@
+import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
 import CompanyRegister from 'pages/CompanyRegister/CompanyRegister';
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
@@ -13,6 +14,7 @@ import {
   LOGIN_ROUTE,
   PRODUCT_DETAILS,
   REGISTER_ROUTE,
+  ABOUT_US_ROUTE
 } from '../utils/consts';
 
 export const publicRoutes = [
@@ -58,4 +60,11 @@ export const publicRoutes = [
     name: 'Корзина',
     Component: CartPage,
   },
+  {
+    path: ABOUT_US_ROUTE,
+    exact: true,
+    name: 'О нас',
+    Component: AboutUsContent,
+  },
+
 ];

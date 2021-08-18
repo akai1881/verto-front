@@ -37,6 +37,9 @@ import { useMediaQuery } from 'react-responsive';
 import { deviceSize } from 'utils/consts';
 import { Suspense } from 'react';
 import Spinner from 'components/UI/Spinner';
+import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
+import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
+import NewsContent from 'components/NewsContent/NewsContent';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -151,16 +154,32 @@ const HomePage = (props) => {
 
   const {data: newProducts, isLoading: newProductsLoading} = useSelector(({ products }) => products.newProducts);
   const {data: recentlyView, isLoading: recentlyViewLoading} = useSelector(({ products }) => products.recentlyView);
-
+  const [ menuBarNews, setMenuBarNews ] = React.useState("О нас");
   useEffect(() => {
     dispath(fetchTopCategories());
     dispath(fetchPopularProducts());
     dispath(fetchNewProducts());
     dispath(fetchRecentlyView());
   }, []);
-
+  let aboutUsItems = [
+    {
+      component:  <AboutUsContent/>,
+      title: "О нас"
+    },
+    {
+      component:  <NewsContent/>,
+      title: "Новости"
+    }
+  ];
+  function menuBarNewsShowItem () {
+   let item =  aboutUsItems.filter((item) => item.title === menuBarNews);
+   return item[0].component;
+  }
   return (
     <MainLayout>
+      <MenuBarNews menuBarNews={menuBarNews} setMenuBarNews={setMenuBarNews}/>
+      { menuBarNewsShowItem () }
+     
       <HeroCarousel />
       <ProductSection
         ComponentItem={CategoryCard}

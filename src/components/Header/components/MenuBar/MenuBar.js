@@ -13,9 +13,9 @@ const mock = [
   },
   {
     id: 2,
-    title: 'Cохранено',
+    title: 'Аукционы',
     active: false,
-    path: '/saved',
+    path: '/auctions',
   },
   {
     id: 3,

@@ -1,0 +1,35 @@
+.menu-bar-news {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 405px;
+    display: flex;
+    justify-content: space-between;
+}
+.menu-bar-news-item {
+    color: #8484B7;
+    font-size: 22px;
+    font-weight: 400;
+}
+.menu-bar-news-item:hover {
+    color: #8484B7;
+    cursor: pointer;
+}
+.menu-bar-news-item-active {
+    color: #231E5A;
+    font-size: 22px;
+    font-weight: 700;
+    position: relative;
+}
+.menu-bar-news-item-active:hover {
+    color: #231E5A;
+    cursor: pointer;
+}
+.menu-bar-news-item-active:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 8px;
+    background-color: #3E5CF2;
+    position: absolute;
+    bottom: -5px;
+}
