@@ -1,3 +1,4 @@
+import FaqPage from 'components/FaqPage/FaqPage';
 import CompanyRegister from 'pages/CompanyRegister/CompanyRegister';
 import Goods from 'pages/Goods/Goods';
 import HomePage from 'pages/Home/HomePage';
@@ -13,6 +14,7 @@ import {
   LOGIN_ROUTE,
   PRODUCT_DETAILS,
   REGISTER_ROUTE,
+  FAQ_ROUTE
 } from '../utils/consts';
 
 export const publicRoutes = [
@@ -57,5 +59,11 @@ export const publicRoutes = [
     exact: true,
     name: 'Корзина',
     Component: CartPage,
+  },
+  {
+    path: FAQ_ROUTE,
+    exact: true,
+    name: 'Часто задаваемые вопросы',
+    Component: FaqPage,
   },
 ];
