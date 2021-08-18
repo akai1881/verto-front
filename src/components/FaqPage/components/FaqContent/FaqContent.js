@@ -34,7 +34,7 @@ const FaqContent = ({ currentId }) => {
             ))}
           </Collapse>
         ) : (
-          <p>
+          <p className="faq-content-placeholder">
             Выберите нужный раздел слева для получения справки или
             воспользуйтесь поиском
           </p>
