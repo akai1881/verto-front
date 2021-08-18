@@ -1,0 +1,26 @@
+@import './../../design-tokens/variables';
+
+.sidebar {
+  width: 270px;
+  margin-right: 30px;
+  &_title {
+    font-size: 16px !important;
+    color: #231e5a !important;
+    font-weight: bold !important;
+  }
+  &_text {
+    font-size: $base-font;
+    color: $secondary-color;
+    cursor: pointer;
+    line-height: 16px;
+    margin-bottom: 8px;
+  }
+  &_list {
+    padding-left: 35px;
+    list-style-type: none;
+  }
+  .active {
+    font-weight: bold;
+    color: #231e5a;
+  }
+}

@@ -1,0 +1,37 @@
+.wrapper {
+  padding-top: 16px;
+  .price {
+    color: #231e5a;
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+}
+
+.price_title {
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: #231e5a !important;
+  // margin-bottom: 8px;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #d4daec;
+  margin-bottom: 16px;
+}
+
+.price_input {
+  width: 80px;
+  display: inline-block;
+  margin: 0 9px;
+  border: 1px solid #8484b7;
+  border-radius: 8px;
+  padding: 8px;
+  &::placeholder {
+    color: #8484b7;
+  }
+  &:last-child {
+    width: 100px;
+  }
+}

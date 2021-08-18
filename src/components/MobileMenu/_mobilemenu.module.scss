@@ -1,0 +1,35 @@
+.wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  top: 70px;
+  background-color: #fff;
+  z-index: 9999;
+  overflow: hidden;
+  @media (max-width: 576px) {
+    top: 50px;
+  }
+  .nav {
+    & > div {
+      color: rgba(244, 66, 44, 1);
+    }
+  }
+  .navigationChevron {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url(./../../static/icons/chevron-right-red.svg) no-repeat;
+      top: 14px;
+      left: 20px;
+      transform: rotate(180deg);
+    }
+    &:hover::before {
+      background: url(./../../static/icons/chevron-right.svg) no-repeat;
+    }
+  }
+}

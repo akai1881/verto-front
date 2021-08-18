@@ -1,0 +1,207 @@
+@import './../../design-tokens/variables';
+
+.register {
+  display: flex;
+  height: 100vh;
+  &_form {
+    min-width: 444px;
+  }
+  &_left_banner {
+    max-width: 40.55555%;
+    flex-basis: 40.55555%;
+    flex-grow: 0;
+    background-color: #fff;
+    background-image: url(./../../static/images/register.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &_right_column {
+    padding: 20px 40px 0 105px;
+    max-width: 59.55555%;
+    flex-basis: 59.55555%;
+    flex-grow: 0;
+  }
+  &_title {
+    font-size: 32px;
+    font-weight: bold;
+    color: $primary-color;
+    margin-bottom: 8px;
+  }
+  &_email_label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: $primary-color;
+  }
+  &_subtitle {
+    font-size: 12px;
+    color: $primary-color;
+    margin-bottom: 20px;
+    span {
+      color: #3e5cf2;
+      cursor: pointer;
+    }
+  }
+  .input {
+    border-radius: 8px;
+    width: 100%;
+    display: inline-block;
+    height: 40px;
+    padding: 12px;
+    background-color: #d4daec;
+    border: none;
+    &.error {
+      border: 1px solid #f4422c;
+      color: inherit;
+    }
+    &:focus {
+      border: 1px solid #3e5cf2;
+      background-color: #fff;
+    }
+    &::placeholder {
+      font-size: 16px;
+      letter-spacing: normal;
+      color: #8484b7;
+    }
+  }
+  &_name_label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    width: 200px;
+    margin-top: 20px;
+    color: $primary-color;
+  }
+  &_password_label {
+    display: flex;
+    margin-bottom: 8px;
+    justify-content: space-between;
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    span:nth-child(2) {
+      color: #3e5cf2;
+      font-weight: normal;
+      cursor: pointer;
+    }
+  }
+  .input_item {
+    margin-bottom: 20px;
+    position: relative;
+    .validate_error {
+      margin-bottom: 0;
+      position: absolute;
+      bottom: -19px;
+      color: #f4422c;
+    }
+  }
+  .register_names {
+    display: flex;
+    justify-content: space-between;
+  }
+  .checkbox {
+    display: flex;
+    color: #8484b7;
+    span {
+      font-size: 12px;
+    }
+    .text {
+      color: #3e5cf2;
+      cursor: pointer;
+    }
+  }
+  .error {
+    color: rgb(230, 25, 25);
+  }
+
+  input[type='password'] {
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #8193ec;
+  }
+
+  &_btn {
+    margin-top: 25px;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .column {
+    width: 50%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .column:first-child {
+    margin-right: 20px;
+  }
+
+  @media (max-width: 1200px) {
+    &_right_column {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &_left_banner {
+      max-width: 34.55555%;
+      flex-basis: 34.55555%;
+    }
+    &_right_column {
+      max-width: 65.55555%;
+      flex-basis: 65.55555%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    &_form {
+      width: 470px;
+    }
+    &_title {
+      font-size: 21px;
+    }
+    &_left_banner {
+      max-width: 100%;
+      flex-basis: none;
+      width: 100%;
+      background-position: 50% 7%;
+      min-height: 220px;
+      flex-grow: 0;
+    }
+    &_right_column {
+      padding: 35px 0;
+      max-width: 100%;
+      flex-basis: 100%;
+      flex-grow: 0;
+    }
+    .flex {
+      flex-direction: column;
+    }
+    .column {
+      width: 100%;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    &_btn {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &_form {
+      min-width: 0;
+      width: 100%;
+      padding: 0 24px;
+    }
+  }
+}

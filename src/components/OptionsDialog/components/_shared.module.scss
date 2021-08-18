@@ -1,0 +1,71 @@
+@import './../../../design-tokens/variables';
+
+.filterItem {
+  min-height: 40px;
+  cursor: pointer;
+  padding: 11px 0 11px 16px;
+  border-bottom: 1px solid #d4daec;
+  color: $primary-color;
+}
+
+.checkboxWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  padding: 11px 16px 11px 16px;
+  border-bottom: 1px solid #d4daec;
+  .checkboxRight {
+    display: flex;
+    .checkboxCount {
+      margin-right: 15px;
+      color: $secondary-color;
+    }
+  }
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 18.7px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  color: #231e5a;
+  .radio_label span {
+    color: #8484b7;
+  }
+  &_input {
+    display: grid;
+    grid-template-areas: 'checkbox';
+    place-items: center;
+    & > * {
+      grid-area: checkbox;
+    }
+    input {
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+    input:checked + .checkbox_control svg {
+      transform: scale(1);
+    }
+    input:checked + .checkbox_control {
+      background-color: #3e5cf2;
+      border: none;
+    }
+  }
+  &_control {
+    display: inline-grid;
+    width: 16px;
+    place-items: center;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #8484b7;
+    svg {
+      transition: transform 0.1s ease-in 25ms;
+      transform: scale(0);
+      transform-origin: bottom left;
+    }
+  }
+}

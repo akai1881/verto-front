@@ -1,0 +1,50 @@
+.wrapper {
+  padding: 12px 0;
+  // box-shadow: 1px 1px 24px #95989a;
+  .toolbarFlex {
+    @media (max-width: 992px) {
+      flex-wrap: wrap;
+    }
+  }
+  .toolbarMiddle {
+    position: relative;
+    @media (max-width: 1200px) {
+      order: initial;
+    }
+    @media (max-width: 992px) {
+      margin-top: 20px;
+      width: 100%;
+      justify-content: center !important;
+      order: 2;
+    }
+  }
+  .logo {
+    width: 170px;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .menu {
+    cursor: pointer;
+    margin-right: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      width: 125px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .menu {
+      margin-right: 20px;
+    }
+    .logo {
+      width: 70px;
+    }
+  }
+}

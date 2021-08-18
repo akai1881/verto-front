@@ -1,0 +1,110 @@
+@import './../../design-tokens/variables';
+
+.info {
+  flex-basis: 270px;
+  &__garant {
+    border-radius: 8px;
+    background-color: #8193ec;
+    box-shadow: 0.4px 0.4px 16px #d4daec;
+    &__header {
+      padding: 21px 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #fff;
+    }
+    &__headerTitle {
+      color: #fff;
+      font-size: 20px;
+      font-weight: $title-weight;
+      line-height: 22px;
+    }
+    &__body {
+      padding: 20px 16px 29px 20px;
+    }
+    &__bodyTitle {
+      color: #fff;
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 4px;
+      font-weight: $title-weight;
+    }
+    &__bodyText {
+      color: #fff;
+      line-height: 16px;
+      margin-bottom: 0;
+    }
+    &__left {
+      margin-left: 16px;
+    }
+  }
+  &__flex {
+    display: flex;
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+  .shop {
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0.4px 0.4px 16px #d4daec;
+    &__header {
+      padding: 16px 21px 16px 31px;
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #3e5cf2;
+    }
+    &__headerTitle {
+      color: #fff;
+      font-size: 20px;
+      line-height: 22px;
+      margin-bottom: 0;
+      font-weight: $title-weight;
+    }
+    &__info {
+      padding: 15px 40px;
+      background-color: #8193ec;
+    }
+
+    &__text {
+      margin-left: 13px;
+    }
+
+    &__name {
+      font-size: 16px;
+      font-weight: $title-weight;
+      color: #fff;
+      line-height: 16px;
+      margin-bottom: 0;
+    }
+
+    &__reviews {
+      color: #fff;
+      line-height: 16px;
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    &__actions {
+      padding: 16px 20px;
+    }
+    &__action {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:not(:last-of-type) {
+        margin-bottom: 8px;
+      }
+    }
+    &__actionTitle {
+      color: #3e5cf2;
+      margin-left: 18px;
+    }
+  }
+  @media (max-width: 767px) {
+    margin-top: 36px;
+    flex-basis: 100%;
+  }
+}

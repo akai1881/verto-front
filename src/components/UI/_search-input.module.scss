@@ -1,0 +1,40 @@
+.search {
+  width: 370px;
+  height: 40px;
+  position: relative;
+  padding: 8px 16px;
+  border: 2px solid #ffc20e;
+  display: flex;
+  transition: 0.3s linear;
+  &.active {
+    border-color: #f4422c;
+  }
+  &.activeSearch {
+    border-bottom-right-radius: 0px !important;
+  }
+  &_input {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    width: 100%;
+    &::placeholder {
+      color: #8484b7;
+      font-size: 16px;
+    }
+  }
+  &_btn {
+    position: absolute;
+    padding: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s ease-out;
+    &:hover {
+      transform: translateY(-55%);
+    }
+  }
+}

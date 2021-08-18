@@ -1,0 +1,31 @@
+@import './../../design-tokens/variables';
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  min-height: 200px;
+  background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 0px 0px 16px 16px;
+  z-index: 9998;
+  padding: 10px;
+  transition: opacity 0.3s, visibility 0.3s, top 0.3s;
+  visibility: hidden;
+  opacity: 0%;
+  top: -30%;
+  &.active {
+    transition: opacity 0.3s, top 0.3s;
+    top: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+  .searchItem {
+    color: $primary-color;
+    transition: 0.3s linear;
+    cursor: pointer;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

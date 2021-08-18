@@ -1,0 +1,33 @@
+.wrapper {
+  width: 130px;
+  height: 40px;
+  display: flex;
+  padding: 9px 0 9px 16px;
+  cursor: pointer;
+  z-index: 9999;
+  align-items: center;
+  background-color: #ffc20e;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  transition: 0.3s linear;
+
+  .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    padding-right: 10px;
+  }
+
+  .arrow_down {
+    path {
+      fill: #fff;
+    }
+  }
+}
+.active {
+  background-color: #f4422c;
+}
+
+.activeSearch {
+  border-bottom-left-radius: 0px;
+}
