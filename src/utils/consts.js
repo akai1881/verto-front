@@ -22,9 +22,21 @@ export const ABOUT_US_ROUTE = '/about-us';
 
 export const NEWS_ROUTE = '/news';
 
+export const NEWS_DETAILS_ROUTE = '/news/1';
+
 export const REVIEWS_ROUTE = '/reviews';
 
 export const CONTACTS_ROUTE ='/contacts';
+
+export const HOW_TO_ORDER_ROUTE = '/how-to-order';
+
+export const REGISTER_RULES_ROUTE = '/register-rules';
+
+export const RULES_ROUTE = '/rules';
+
+export const RATE_UP_ROUTE = '/rate-up';
+
+export const DELIVERY_ROUTE = '/delivery';
 
 /*<==================== PHONE VALIDATION REGEX ====================> */
 

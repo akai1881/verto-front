@@ -40,6 +40,7 @@ import Spinner from 'components/UI/Spinner';
 import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
 import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
 import NewsContent from 'components/NewsContent/NewsContent';
+import MenuHowToOrder from 'components/MenuHowToOrder/MenuHowToOrder';
 
 const { Paragraph } = Typography;
 const categoriesMock = [

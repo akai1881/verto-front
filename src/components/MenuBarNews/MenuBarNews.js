@@ -10,30 +10,29 @@ const mock = [
   {
     id: 1,
     title: 'О нас',
-    active: true,
     path: '/about-us',
   },
   {
     id: 2,
     title: 'Новости',
-    active: false,
     path: '/news',
   },
   {
     id: 3,
     title: 'Отзывы',
-    active: false,
     path: '/reviews',
   },
   {
     id: 4,
     title: 'Контакты',
-    active: false,
     path: '/contacts',
   },
 ];
 
 const MenuBarNews = () => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+}, []) 
   return (
     <Container>
       <div>

@@ -4,6 +4,9 @@ import Container from "components/UI/Container";
 import FaqMenu from "./components/FaqMenu/FaqMenu";
 import FaqContent from "./components/FaqContent/FaqContent";
 import { Row, Col } from "antd";
+import Footer from "components/Footer";
+import Header from "components/Header";
+import MenuHowToOrder from "components/MenuHowToOrder/MenuHowToOrder";
 const FaqPage = () => {
   const [currentId, setCurrentId] = useState(0);
   const [activeKey, setActiveKey] = useState(1);
@@ -15,7 +18,11 @@ const FaqPage = () => {
     [setCurrentId, setActiveKey]
   );
   return (
+    <>
     <Container>
+      <Header/>
+      <MenuHowToOrder/>
+      <div className='fag-content'>
       <Row gutter={24} span={24}>
         <Col span={8}>
           <FaqMenu handleMenuClick={handleMenuClick} />
@@ -24,7 +31,10 @@ const FaqPage = () => {
           <FaqContent currentId={currentId} activeKey={activeKey} />
         </Col>
       </Row>
+      </div>
     </Container>
+    <Footer/>
+    </>
   );
 };
 

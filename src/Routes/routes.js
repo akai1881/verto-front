@@ -1,8 +1,14 @@
 import AboutUsContent from "components/AboutUsContent/AboutUsContent";
 import ContactsContent from "components/ContactsContent/ContactsContent";
+import DeliveryContent from "components/DeliveryContent/DeliveryContent";
 import FaqPage from "components/FaqPage/FaqPage";
+import HowToOrder from "components/HowToOrder/HowToOrder";
 import NewsContent from "components/NewsContent/NewsContent";
+import NewsDetails from "components/NewsDetails/NewsDetails";
+import RateUpContent from "components/RateUpContent/RateUpContent";
+import RegisterRulesContent from "components/RegisterRulesContent/RegisterRulesContent";
 import RewiewsContent from "components/RewiesContent/RewiewsContent";
+import RulesContent from "components/RulesContent/RulesContent";
 import CompanyRegister from "pages/CompanyRegister/CompanyRegister";
 import Goods from "pages/Goods/Goods";
 import HomePage from "pages/Home/HomePage";
@@ -23,6 +29,12 @@ import {
   REVIEWS_ROUTE,
   CONTACTS_ROUTE,
   FAQ_ROUTE,
+  NEWS_DETAILS_ROUTE,
+  HOW_TO_ORDER_ROUTE,
+  REGISTER_RULES_ROUTE,
+  RULES_ROUTE,
+  DELIVERY_ROUTE,
+  RATE_UP_ROUTE,
 } from "../utils/consts";
 
 export const publicRoutes = [
@@ -81,6 +93,12 @@ export const publicRoutes = [
     Component: NewsContent,
   },
   {
+    path: NEWS_DETAILS_ROUTE,
+    exact: true,
+    name: "Детали новостей",
+    Component: NewsDetails,
+  },
+  {
     path: REVIEWS_ROUTE,
     exact: true,
     name: "Отзывы",
@@ -97,5 +115,35 @@ export const publicRoutes = [
     exact: true,
     name: "Часто Задаваемые Вопросы",
     Component: FaqPage,
+  },
+  {
+    path: HOW_TO_ORDER_ROUTE,
+    exact: true,
+    name: "Как сделать заказ",
+    Component: HowToOrder,
+  },
+  {
+    path: REGISTER_RULES_ROUTE,
+    exact: true,
+    name: "Условия регистрации",
+    Component: RegisterRulesContent,
+  },
+  {
+    path: RULES_ROUTE,
+    exact: true,
+    name: "Правила использования платформы",
+    Component: RulesContent
+  },
+  {
+    path: RATE_UP_ROUTE,
+    exact: true,
+    name: "Как повысить рейтинг",
+    Component: RateUpContent,
+  },
+  {
+    path: DELIVERY_ROUTE,
+    exact: true,
+    name: "Доставка",
+    Component: DeliveryContent,
   },
 ];

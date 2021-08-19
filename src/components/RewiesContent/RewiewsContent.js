@@ -55,8 +55,6 @@ const RewiewsContent = () => {
                 </div>
               </div>
             ): null}</div>
-            
-           
           </Container>
          <Footer/>
         </>

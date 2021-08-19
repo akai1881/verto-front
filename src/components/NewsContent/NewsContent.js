@@ -13,14 +13,16 @@ import Container from 'components/UI/Container';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
+import { useHistory } from 'react-router-dom';
 
 const NewsContent = () => {
+    const history = useHistory();
     return (
        <> <Container>
             <Header/>
             <MenuBarNews />
             <div className='all-news-title'><span>Все новости</span></div>
-            <div className='all-news'>
+            <div className='all-news' onClick={() => history.push('/news/1')}>
                 <p className='all-news-count'>1 000  статей</p>
                 <div className='all-news-item-card'>
                     <img className='all-news-item-img' src={AllNewsImg5}/>
