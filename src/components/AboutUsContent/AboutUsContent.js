@@ -43,7 +43,7 @@ const AboutUsContent = () => {
                  <div><img src={AboutUsImg3}/><span>до 1 млн  ₸</span><span>Lorem Ipsum Dolores Se</span></div>
              </div>
              <div className='about-us-title'>География</div>
-             <div>map</div>
+             <div className='about-us-map'>map</div>
              <div className='about-us-title'>Последние новости</div>
              <div className='about-us-latest-news'>
                  <div><img src={LastestNews1}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
