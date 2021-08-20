@@ -26,7 +26,7 @@ const AboutUsContent = () => {
         <Container>
             <Header />
             <MenuBarNews />
-            <div><img src={AboutUsImg}/></div>
+            <div><img className='about-us-content-img' src={AboutUsImg}/></div>
             <div className='about-us-content'>
             <div><span>15 тыс +</span>
             <p>компаний на сайте</p>
@@ -46,10 +46,10 @@ const AboutUsContent = () => {
              <div className='about-us-map'>map</div>
              <div className='about-us-title'>Последние новости</div>
              <div className='about-us-latest-news'>
-                 <div><img src={LastestNews1}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
-                 <div><img src={LastestNews2}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
-                 <div><img src={LastestNews3}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
-                 <div><img src={LastestNews4}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
+                 <div className='about-us-latest-news-card'><img className='about-us-latest-news-img' src={LastestNews1}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
+                 <div className='about-us-latest-news-card'><img className='about-us-latest-news-img' src={LastestNews2}/><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
+                 <div className='about-us-latest-news-d-none-1 about-us-latest-news-card'><img src={LastestNews3} className='about-us-latest-news-img' /><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
+                 <div className='about-us-latest-news-d-none-2 about-us-latest-news-card'><img src={LastestNews4} className='about-us-latest-news-img' /><div><p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p><span>Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)Apple iPhone 11 Pro - 256GB - Gold A2215 (CDMA + GSM)</span><img className='about-us-arrow' src={Arrow}/></div></div>
              </div>
         </Container>
         <Footer/>

@@ -6,7 +6,6 @@ import FaqContent from "./components/FaqContent/FaqContent";
 import { Row, Col } from "antd";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import MenuHowToOrder from "components/MenuHowToOrder/MenuHowToOrder";
 const FaqPage = () => {
   const [currentId, setCurrentId] = useState(0);
   const [activeKey, setActiveKey] = useState(1);
@@ -21,8 +20,7 @@ const FaqPage = () => {
     <>
     <Container>
       <Header/>
-      <MenuHowToOrder/>
-      <div className='fag-content'>
+      <div className='faq-content'>
       <Row gutter={24} span={24}>
         <Col span={8}>
           <FaqMenu handleMenuClick={handleMenuClick} />

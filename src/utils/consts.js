@@ -38,6 +38,8 @@ export const RATE_UP_ROUTE = '/rate-up';
 
 export const DELIVERY_ROUTE = '/delivery';
 
+export const QUESTIONS_ROUTE = '/questions';
+
 /*<==================== PHONE VALIDATION REGEX ====================> */
 
 export const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gi;
