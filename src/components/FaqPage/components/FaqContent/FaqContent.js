@@ -1,9 +1,8 @@
 import { FAQ_ITEMS } from "components/FaqPage/utils/consts";
-import React, { useEffect, useState } from "react";
-import { Collapse, Row, Col } from "antd";
+import React from "react";
+import { Collapse, Row } from "antd";
 
 const FaqContent = ({ currentId }) => {
-  const [activeKey, setActiveKey] = useState();
   const { Panel } = Collapse;
   const faqItems = FAQ_ITEMS.find((item) => {
     return item.options.some((option) => {

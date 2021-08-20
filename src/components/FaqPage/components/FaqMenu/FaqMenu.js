@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FAQ_ITEMS } from "components/FaqPage/utils/consts";
-import { Row } from "antd";
 
 const FaqMenu = ({ handleMenuClick }) => {
   const [isActive, setIsActive] = useState(0);
