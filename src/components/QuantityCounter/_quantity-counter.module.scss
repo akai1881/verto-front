@@ -1,0 +1,35 @@
+@import './../../design-tokens/_variables.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  .btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+    border-radius: 50%;
+    border: none;
+    background-color: #fff;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      width: 70px;
+      border: 1px solid $secondary-color;
+      border-radius: 8px;
+      text-align: center;
+      height: 32px;
+    }
+  }
+}

@@ -14,7 +14,7 @@ export const COMPANY_REGISTER = '/register/company';
 
 export const PRODUCT_DETAILS = '/product/:productId';
 
-export const CART_ROUTE = '/cart'
+export const CART_ROUTE = '/cart';
 
 /*<==================== PHONE VALIDATION REGEX ====================> */
 
@@ -23,7 +23,18 @@ export const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{
 /*<==================== DEVICE SIZING ====================> */
 
 export const deviceSize = {
+  laptop: 992,
   mobile: 768,
   smallMobile: 576,
-  laptop: 992,
 };
+
+/*<==================== ACTIONS ====================> */
+
+export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+export const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
+
+/*<==================== KEY PRESS ACTIONS ====================> */
+
+export const INCREASE_KEY = 'ArrowUp';
+export const DECREASE_KEY = 'ArrowDown';

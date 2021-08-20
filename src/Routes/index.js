@@ -18,8 +18,7 @@ const Routes = () => {
                 .map(({ path, ...rest }) => ({
                   path: Object.keys(props.match.params).length
                     ? Object.keys(props.match.params).reduce(
-                        (path, param) =>
-                          path.replace(`:${param}`, props.match.params[param]),
+                        (path, param) => path.replace(`:${param}`, props.match.params[param]),
                         path
                       )
                     : path,

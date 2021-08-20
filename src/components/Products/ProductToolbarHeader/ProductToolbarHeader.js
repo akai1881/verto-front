@@ -77,6 +77,7 @@ const ProductToolbarHeader = ({ results }) => {
           <div className={styles.toolbar_sort_wrapper}>
             <Flex align="center">
               <div className="selector">
+                // TODO MAKE THIS AS A INDIVIDUAL COMPONENT
                 <Select
                   defaultValue="Сортировать"
                   bordered={false}

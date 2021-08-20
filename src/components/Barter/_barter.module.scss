@@ -1,0 +1,12 @@
+@import './../../design-tokens/mixins';
+@import './../../design-tokens/variables';
+
+.barterWrapper {
+  @include box;
+  padding: 25px;
+  .barterTitle {
+    color: $primary-color;
+    font-size: 40px;
+    font-weight: $title-weight;
+  }
+}
