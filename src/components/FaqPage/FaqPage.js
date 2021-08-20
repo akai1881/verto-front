@@ -7,7 +7,6 @@ import FaqContent from "./components/FaqContent/FaqContent";
 import FaqMobile from "./components/FaqMobile/FaqMobile";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import MenuHowToOrder from "components/MenuHowToOrder/MenuHowToOrder";
 import { deviceSize } from "utils/consts";
 import "./_faq_page_module.scss";
 const FaqPage = () => {

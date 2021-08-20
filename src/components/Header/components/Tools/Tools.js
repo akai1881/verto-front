@@ -87,7 +87,15 @@ const Tools = () => {
               </Tooltip>
             </Dropdown>
           );
-        } else {
+        } if(title === 'Корзина'){
+          return (            <Tooltip key={id} placement="top" title={title}>
+          <div key={id} className={styles.tool}>
+            <Link to='/cart'><Icon /></Link>
+          </div>
+        </Tooltip>
+)
+        }
+        else {
           return (
             <Tooltip key={id} placement="top" title={title}>
               <div key={id} className={styles.tool}>

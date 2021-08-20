@@ -105,7 +105,7 @@ const Footer = () => {
                 <Link to='/register-rules' className={styles.list_item}>
                   Условие регистрации
                 </Link>
-                <Link to='/help' className={styles.list_item}>
+                <Link to='/questions' className={styles.list_item}>
                   Спорные вопросы
                 </Link>
                 <Link to='/rules' className={styles.list_item}>

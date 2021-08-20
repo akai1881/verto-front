@@ -27,7 +27,7 @@ const AboutUsContent = () => {
         <Header />
         <MenuBarNews />
         <div>
-          <img src={AboutUsImg} />
+          <img className="about-us-content-img" src={AboutUsImg} />
         </div>
         <div className="about-us-content">
           <div>
@@ -66,11 +66,13 @@ const AboutUsContent = () => {
           </div>
         </div>
         <div className="about-us-title">География</div>
-        <AboutUsMap />
+        <div className="about-us-map">
+          <AboutUsMap />
+        </div>
         <div className="about-us-title">Последние новости</div>
         <div className="about-us-latest-news">
-          <div>
-            <img src={LastestNews1} />
+          <div className="about-us-latest-news-card">
+            <img className="about-us-latest-news-img" src={LastestNews1} />
             <div>
               <p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p>
               <span>
@@ -81,8 +83,8 @@ const AboutUsContent = () => {
               <img className="about-us-arrow" src={Arrow} />
             </div>
           </div>
-          <div>
-            <img src={LastestNews2} />
+          <div className="about-us-latest-news-card">
+            <img className="about-us-latest-news-img" src={LastestNews2} />
             <div>
               <p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p>
               <span>
@@ -93,8 +95,8 @@ const AboutUsContent = () => {
               <img className="about-us-arrow" src={Arrow} />
             </div>
           </div>
-          <div>
-            <img src={LastestNews3} />
+          <div className="about-us-latest-news-d-none-1 about-us-latest-news-card">
+            <img src={LastestNews3} className="about-us-latest-news-img" />
             <div>
               <p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p>
               <span>
@@ -105,8 +107,8 @@ const AboutUsContent = () => {
               <img className="about-us-arrow" src={Arrow} />
             </div>
           </div>
-          <div>
-            <img src={LastestNews4} />
+          <div className="about-us-latest-news-d-none-2 about-us-latest-news-card">
+            <img src={LastestNews4} className="about-us-latest-news-img" />
             <div>
               <p>Apple iPhone 11 Pro - 256GB - Gold A2215 </p>
               <span>

@@ -5,6 +5,7 @@ import FaqPage from "components/FaqPage/FaqPage";
 import HowToOrder from "components/HowToOrder/HowToOrder";
 import NewsContent from "components/NewsContent/NewsContent";
 import NewsDetails from "components/NewsDetails/NewsDetails";
+import QuestionsContent from "components/QuestionsContent/QuestionsContent";
 import RateUpContent from "components/RateUpContent/RateUpContent";
 import RegisterRulesContent from "components/RegisterRulesContent/RegisterRulesContent";
 import RewiewsContent from "components/RewiesContent/RewiewsContent";
@@ -35,6 +36,7 @@ import {
   RULES_ROUTE,
   DELIVERY_ROUTE,
   RATE_UP_ROUTE,
+  QUESTIONS_ROUTE,
 } from "../utils/consts";
 
 export const publicRoutes = [
@@ -145,5 +147,11 @@ export const publicRoutes = [
     exact: true,
     name: "Доставка",
     Component: DeliveryContent,
+  },
+  {
+    path: QUESTIONS_ROUTE,
+    exact: true,
+    name: "Спорные вопросы",
+    Component: QuestionsContent,
   },
 ];

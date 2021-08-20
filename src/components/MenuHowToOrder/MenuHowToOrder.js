@@ -20,7 +20,7 @@ const mock = [
   {
     id: 3,
     title: 'Спорные вопросы',
-    path: '/help',
+    path: '/questions',
   },
   {
     id: 4,
