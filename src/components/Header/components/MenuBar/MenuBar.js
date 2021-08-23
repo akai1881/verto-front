@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Flex from 'components/UI/Flex';
 import styles from './_menubar.module.scss';
 import Container from 'components/UI/Container';
@@ -33,13 +33,13 @@ const mock = [
     id: 5,
     title: 'Авто и мото',
     active: false,
-    path: '/auto-and-moto',
+    path: '/goods/verto-car/legkovye/avto-i-zapchasti',
   },
   {
     id: 6,
     title: 'Дом и сад',
     active: false,
-    path: '/house-and-kindergarden',
+    path: '/goods/verto-home/vse-dlja-doma/dom-i-sad',
   },
   {
     id: 7,
@@ -51,13 +51,13 @@ const mock = [
     id: 8,
     title: 'Одежда и обувь',
     active: false,
-    path: '/clothes-and-shoes',
+    path: '/goods/verto-clothes/man/odezhda-i-obuv',
   },
   {
     id: 9,
     title: 'Красота и здоровье',
     active: false,
-    path: '/beauty-and-helth',
+    path: '/goods/verto-beauty/maski/krasota-i-zdorove',
   },
   {
     id: 10,
@@ -68,6 +68,9 @@ const mock = [
 ];
 
 const MenuBar = () => {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
   return (
     <Container>
       <div className={styles.wrapper}>
