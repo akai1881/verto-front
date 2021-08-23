@@ -133,3 +133,88 @@ hr {
         align-items: center;
     }
 }
+@media all and (max-width: 320px) {
+    hr {
+      margin: 10px 0 !important;
+    }
+    .rewiwes-title {
+      height: 64px !important;
+      span {
+        font-size: 14px !important;
+      }
+      p {
+        font-size: 8px !important;
+      }
+    }
+    .add-review-title {
+      font-size: 20px !important;
+    }
+    .add-review-rate-title {
+      font-size: 13px !important;
+    }
+    .add-review-form {
+      input {
+        width: 100% !important;
+      }
+      textarea {
+        width: 100% !important;
+      }
+      label {
+        font-size: 13px !important;
+      }
+    }
+    .all-reviews-is-empty {
+      margin: 10px 0;
+      span {
+        font-size: 20px !important;
+      }
+    }
+    button {
+      width: 254px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
+  }
+  
+  @media all and (max-width: 425px) {
+    hr {
+      margin: 10px 0 !important;
+    }
+    .rewiwes-title {
+      height: 64px !important;
+      span {
+        font-size: 14px !important;
+      }
+      p {
+        font-size: 8px !important;
+      }
+    }
+    .add-review-title {
+      font-size: 20px !important;
+    }
+    .add-review-rate-title {
+      font-size: 13px !important;
+    }
+    .add-review-form {
+      input {
+        width: 100% !important;
+      }
+      textarea {
+        width: 100% !important;
+      }
+      label {
+        font-size: 13px !important;
+      }
+    }
+    .all-reviews-is-empty {
+      margin: 10px 0;
+      span {
+        font-size: 20px !important;
+      }
+    }
+    button {
+      width: 254px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
+  }
