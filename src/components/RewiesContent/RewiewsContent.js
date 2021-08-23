@@ -27,8 +27,7 @@ const RewiewsContent = () => {
                 </div>
             </div>
             <hr />
-            { reviews? <div className='all-reviews'></div> : (<div><div className='all-reviews-is-empty'><span>Отзывов ещё нет — ваш может стать первым</span> <br /> <button onClick={() => setShowFormAddReview(!showFormAddReview)}>Написать отзыв</button></div></div>)}    
-            <div>{showFormAddReview ? (
+            { reviews? <div className='all-reviews'></div> : (<div>{showFormAddReview ? (
                 <div>
                 <div className='add-review-title'>Оставьте отзыв о нас!</div>
                 <div className='add-review-rate-title'>Качество товара или услуги</div>
@@ -51,10 +50,11 @@ const RewiewsContent = () => {
                     <input style={{display: 'none'}} id='add-review-form-inp-file' type='file'/>
                     <label>Персональные данные</label>
                     <span>Нажимая на кнопку Отправить, вы соглашаетесь на обработку персональных данных</span>
-                    <button>Отправить</button>
+                    <button onClick={() => setShowFormAddReview(false)}>Отправить</button>
                 </div>
               </div>
-            ): null}</div>
+            ):  (<div><div className='all-reviews-is-empty'><span>Отзывов ещё нет — ваш может стать первым</span> <br /><button className='reviews-add-btn' onClick={() => setShowFormAddReview(true)}>Написать отзыв</button></div></div>)}</div>
+)}    
           </Container>
          <Footer/>
         </>
