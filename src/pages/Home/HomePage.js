@@ -37,6 +37,10 @@ import { useMediaQuery } from 'react-responsive';
 import { deviceSize } from 'utils/consts';
 import { Suspense } from 'react';
 import Spinner from 'components/UI/Spinner';
+import MenuBarNews from 'components/MenuBarNews/MenuBarNews';
+import AboutUsContent from 'components/AboutUsContent/AboutUsContent';
+import NewsContent from 'components/NewsContent/NewsContent';
+import MenuHowToOrder from 'components/MenuHowToOrder/MenuHowToOrder';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -151,14 +155,12 @@ const HomePage = (props) => {
 
   const {data: newProducts, isLoading: newProductsLoading} = useSelector(({ products }) => products.newProducts);
   const {data: recentlyView, isLoading: recentlyViewLoading} = useSelector(({ products }) => products.recentlyView);
-
   useEffect(() => {
     dispath(fetchTopCategories());
     dispath(fetchPopularProducts());
     dispath(fetchNewProducts());
     dispath(fetchRecentlyView());
   }, []);
-
   return (
     <MainLayout>
       <HeroCarousel />
