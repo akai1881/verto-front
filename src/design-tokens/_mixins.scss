@@ -1,0 +1,31 @@
+@import './variables';
+
+@mixin box {
+  background: #ffffff;
+  box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+  border-radius: 8px;
+}
+
+@mixin round-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@mixin title {
+  color: $primary-color;
+  font-size: 40px;
+  font-weight: $title-weight;
+}

@@ -1,24 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './_login.module.scss';
 import banner from './../../static/images/Сгруппировать 647.jpg';
 import Button from 'components/UI/Button';
-import {useDispatch, useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import {clearState, login, userSelector} from 'store/slices/userSlice';
-import {Spin} from 'antd';
-import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { clearState, login, userSelector } from 'store/slices/userSlice';
+import { Spin } from 'antd';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {openNotification} from 'utils/notifications';
-import {useForm} from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { openNotification } from 'utils/notifications';
+import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
-import PreloadSpinner from "../../components/UI/PreloadSpinner";
+import PreloadSpinner from '../../components/UI/PreloadSpinner';
 
 const schema = yup.object({
-  email: yup
-    .string()
-    .required('Это обязательное поле')
-    .email('Введите email в корректном формате'),
+  email: yup.string().required('Это обязательное поле').email('Введите email в корректном формате'),
   password: yup.string().required('Это обязательное поле'),
 });
 
@@ -26,13 +23,12 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: {errors},
-  } = useForm({resolver: yupResolver(schema)});
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
-  const [DOMLoading, setDOMLoading] = useState(true)
+  const [DOMLoading, setDOMLoading] = useState(true);
 
-  const {isSuccess, isError, isLoading, errorMessage, user} =
-    useSelector(userSelector);
+  const { isSuccess, isError, isLoading, errorMessage, user } = useSelector(userSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -52,19 +48,19 @@ const LoginPage = () => {
 
   useEffect(() => {
     const handleDOMLoaded = () => {
-      console.log('worked')
-      setDOMLoading(false)
-    }
+      console.log('worked');
+      setDOMLoading(false);
+    };
 
-    console.log("use effect")
+    console.log('use effect');
 
-    window.addEventListener('load', handleDOMLoaded)
+    window.addEventListener('load', handleDOMLoaded);
 
     return () => {
-      window.removeEventListener('load', handleDOMLoaded)
-      setDOMLoading(false)
-    }
-  }, [])
+      window.removeEventListener('load', handleDOMLoaded);
+      setDOMLoading(false);
+    };
+  }, []);
 
   useEffect(() => {
     if (isError) {
@@ -83,9 +79,7 @@ const LoginPage = () => {
 
   return (
     <div className={styles.login}>
-      {DOMLoading && (
-        <PreloadSpinner/>
-      )}
+      {/* {DOMLoading && <PreloadSpinner />} */}
       <div className={styles.login_left_banner}></div>
       <div className={styles.login_right_column}>
         <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
@@ -103,9 +97,7 @@ const LoginPage = () => {
 
           <div className={styles.input_wrapper}>
             <div className={styles.input_item}>
-              <div className={styles.login_email_label}>
-                Адрес электронной почты
-              </div>
+              <div className={styles.login_email_label}>Адрес электронной почты</div>
               <input
                 className={clsx({
                   [styles.input]: true,
@@ -130,15 +122,13 @@ const LoginPage = () => {
                 type="password"
                 {...register('password')}
               />
-              <p className={styles.login_validate}>
-                {errors.password?.message}
-              </p>
+              <p className={styles.login_validate}>{errors.password?.message}</p>
             </div>
           </div>
           <Button className={styles.login_btn}>
             {isLoading ? (
               <div className="spinner">
-                <Spin/>
+                <Spin />
               </div>
             ) : (
               'Войдите в систему'

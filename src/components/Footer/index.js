@@ -10,7 +10,6 @@ import logo from './../.././static/images/Logo_198 white.png';
 import logoMobile from './../.././static/images/logo-white-mobile.png';
 import { useMediaQuery } from 'react-responsive';
 import { deviceSize } from 'utils/consts';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
@@ -79,41 +78,41 @@ const Footer = () => {
             <Col span={4} xs={12} md={4}>
               <div className={styles.list}>
                 <h4 className={styles.title}>Компания</h4>
-                <Link to='/about-us' className={styles.list_item}>
+                <a href="#" className={styles.list_item}>
                   О нас
-                </Link>
-                <Link to='/news' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
                   Блог
-                </Link>
-                <Link to='/reviews' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
                   Отзывы
-                </Link>
-                <Link to='/news' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
                   Новости
-                </Link>
-                <Link to='/contacts' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
                   Контакты
-                </Link>
+                </a>
               </div>
             </Col>
             <Col span={5} xs={12} md={4}>
               <div className={styles.list}>
                 <h4 className={styles.title}>Информация</h4>
-                <Link to='/how-to-order' className={styles.list_item}>
+                <a href="#" className={styles.list_item}>
                   Как сделать заказ
-                </Link>
-                <Link to='/register-rules' className={styles.list_item}>
-                  Условия регистрации
-                </Link>
-                <Link to='/questions' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
+                  Условие регистрации
+                </a>
+                <a href="#" className={styles.list_item}>
                   Спорные вопросы
-                </Link>
-                <Link to='/rules' className={styles.list_item}>
+                </a>
+                <a href="#" className={styles.list_item}>
                   Условия использования
-                </Link>
-                <Link to='/rate-up' className={`${styles.list_item}`}>
+                </a>
+                <a href="#" className={`${styles.list_item}`}>
                   Как повысить ваш рейтинг
-                </Link>
+                </a>
               </div>
             </Col>
             <Col span={24} xs={24} md={5}>

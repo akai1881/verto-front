@@ -24,8 +24,6 @@ const CategoryModal = () => {
 
   const { data: categories, loading } = useSelector(({ products }) => products.categories);
 
-  console.log(categories)
-
   const dispatch = useDispatch();
 
   const history = useHistory();

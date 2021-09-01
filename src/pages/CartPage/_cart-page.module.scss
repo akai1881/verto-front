@@ -1,0 +1,50 @@
+@import './../../design-tokens/variables';
+@import './../../design-tokens/mixins';
+
+.wrapper {
+  padding-bottom: 95px;
+  .cartCount {
+    color: $primary-color;
+    font-size: 16px;
+    font-weight: $title-weight;
+    margin-bottom: 16px;
+  }
+  .orderWrapper {
+    display: flex;
+    margin: 30px 0;
+    .orderDelivery {
+      max-width: 570px;
+      padding: 24px 70px 24px 24px;
+      margin-right: 30px;
+      @include box;
+
+      .orderText {
+        color: $primary-color;
+        font-size: 16px;
+        .special {
+          font-weight: $title-weight;
+        }
+      }
+    }
+  }
+  .authorize {
+    @include box;
+    padding: 24px;
+    .dangerText {
+      color: $danger-color;
+      font-size: 16px;
+      span {
+        font-weight: $title-weight;
+      }
+    }
+  }
+  .title {
+    color: $primary-color;
+    font-size: 40px;
+    font-weight: $title-weight;
+  }
+  .btn {
+    margin-bottom: 24px;
+    margin-top: 24px;
+  }
+}

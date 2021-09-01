@@ -355,6 +355,19 @@ code {
   color: #231e5a !important;
 }
 
+.barter-select .ant-select {
+  width: 275px !important;
+}
+
+.barter-select .ant-select-selector {
+  border-radius: 8px !important;
+  border-color: #8484b7 !important;
+}
+
+.barter-select .ant-select-arrow {
+  top: 50% !important;
+}
+
 /* ============= SLIDER CUSTOMIZATION =================*/
 .slider .ant-slider-rail {
   background-color: #d4daec !important;
@@ -509,7 +522,7 @@ code {
   justify-content: center;
 }
 
-.skeleton-wrapper .ant-skeleton-element  {
+.skeleton-wrapper .ant-skeleton-element {
   width: 100% !important;
 }
 
@@ -523,12 +536,16 @@ code {
   width: 75px;
   height: 75px;
   animation: spinning 1.5s linear infinite;
-  border-top: 10px solid   #ffc20e;
+  border-top: 10px solid #ffc20e;
   border-right: 10px solid #3e5cf2;
   border-bottom: 10px solid #f4422c;
 }
 
 @keyframes spinning {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
