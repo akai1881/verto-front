@@ -7,7 +7,7 @@ import { ReactComponent as StarRateIcon } from './../../static/icons/Vector.svg'
 import { Doughnut } from 'react-chartjs-2';
 import Button from 'components/UI/Button';
 
-const data = {
+const mockData = {
   datasets: [
     {
       label: '# of Votes',
