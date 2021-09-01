@@ -5,6 +5,7 @@ import { ReactComponent as DecreaseIcon } from './../../static/icons/decrease.sv
 import { isEmptyString } from 'utils/helpers';
 import { INCREASE_KEY } from 'utils/consts';
 import { DECREASE_KEY } from 'utils/consts';
+import { QUANTITY_LIMIT } from 'utils/consts';
 
 const QuantityCounter = ({
   unit = 5,
@@ -12,11 +13,14 @@ const QuantityCounter = ({
   controls = true,
   decreaseComponent: DecreaseButton,
   increaseComponent: IncreaseButton,
+  noLimit = false,
   count = 1,
   gap = 16,
 }) => {
   const [value, setValue] = useState(count);
   const [limit, setLimit] = useState(unit);
+
+  // TODO REFACTOR THIS SHITTY LOGIC
 
   useEffect(() => {
     if (!isEmptyString(value) && onChange !== undefined) {
@@ -24,12 +28,34 @@ const QuantityCounter = ({
     }
   }, [value]);
 
+  useEffect(() => {
+    setValue((prevCount) => {
+      if (prevCount !== count) {
+        return count;
+      } else {
+        return prevCount;
+      }
+    });
+
+    setLimit((prevLimit) => {
+      if (prevLimit !== unit) {
+        return unit;
+      } else {
+        return prevLimit;
+      }
+    });
+  }, [count, limit]);
+
   const handleIncrease = () => {
     if (isEmptyString(value)) {
       setValue(1);
       return;
     }
-    if (value < limit) {
+    if (!noLimit) {
+      if (value < limit) {
+        setValue((prev) => prev + 1);
+      }
+    } else if (value < QUANTITY_LIMIT) {
       setValue((prev) => prev + 1);
     }
   };
@@ -48,20 +74,18 @@ const QuantityCounter = ({
     let val = e.target.value;
 
     if (isEmptyString(val)) {
-      val = '';
       setValue('');
       return;
     } else if (val == 0) {
       val = 1;
     }
 
-    if (isNaN(+val)) {
-      return;
-    }
+    if (isNaN(+val)) return;
 
-    if (+val > limit) {
-      // setValue(limit);
-      return;
+    if (!noLimit) {
+      if (+val > limit) return;
+    } else {
+      if (+val > QUANTITY_LIMIT) return;
     }
 
     setValue(+val);
@@ -81,11 +105,19 @@ const QuantityCounter = ({
         setValue(count);
         return;
       }
-      if (count < limit) {
+      if (!noLimit) {
+        if (count < limit) {
+          count += 1;
+          setValue(count);
+        }
+      } else if (count < QUANTITY_LIMIT) {
         count += 1;
         setValue(count);
       }
-    } else if (e.key === DECREASE_KEY) {
+      return;
+    }
+
+    if (e.key === DECREASE_KEY) {
       if (count === 1 || isEmptyString(count)) {
         count = 1;
         setValue(count);

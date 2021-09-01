@@ -1,0 +1,24 @@
+@import './../../design-tokens/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .label {
+    color: $secondary-color;
+    position: absolute;
+    font-size: 12px;
+  }
+  .default {
+    top: -25px;
+  }
+  .center {
+    top: -25px;
+    width: 100%;
+    text-align: center;
+  }
+  .alignCenter {
+    display: flex;
+    justify-content: center;
+  }
+}

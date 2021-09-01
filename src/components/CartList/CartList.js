@@ -10,6 +10,8 @@ import { addItemToCart } from 'utils/cart';
 import { openNotification } from 'utils/notifications';
 import { useDispatch } from 'react-redux';
 import { setCartLength } from 'store/slices/productsSlice';
+import { TransitionGroup } from 'react-transition-group';
+import Fade from 'react-reveal/Fade';
 
 const list = [
   {
@@ -120,17 +122,17 @@ const CartList = () => {
   );
 
   return (
-    <>
-      {cart?.products?.length > 0 ? (
-        <div className={styles.cartListWrapper}>
-          {cart.products.map((item) => (
-            <CartItem count={item.count} product={item.item} key={item.item.id} onDelete={handleDeleteItem} />
-          ))}
-        </div>
-      ) : (
-        'Корзина пуста'
-      )}
-    </>
+    <div className={styles.cartListWrapper}>
+      <TransitionGroup appear={false} enter={true} exit={true}>
+        {cart.products.length > 0
+          ? cart.products.map((item) => (
+              <Fade collapse top>
+                <CartItem count={item.count} product={item.item} key={item.item.id} onDelete={handleDeleteItem} />
+              </Fade>
+            ))
+          : null}
+      </TransitionGroup>
+    </div>
   );
 };
 

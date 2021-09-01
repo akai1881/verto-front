@@ -1,0 +1,39 @@
+@import './../../design-tokens/variables';
+
+.wrapper {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid $light-color;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 18px 32px;
+  &:first-child {
+    margin-right: 50px;
+  }
+}
+
+.image {
+  min-width: 70px;
+  height: 70px;
+  margin-right: 16px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.title {
+  font-size: 20px;
+  font-weight: $title-weight;
+  color: #231e5a;
+}
+
+.active {
+  background-color: $active-color;
+  border: none;
+  .title {
+    color: #fff;
+  }
+}

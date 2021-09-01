@@ -38,3 +38,8 @@ export const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
 
 export const INCREASE_KEY = 'ArrowUp';
 export const DECREASE_KEY = 'ArrowDown';
+
+export const QUANTITY_LIMIT = 10000000;
+
+export const DISACTIVE_COLOR_HEX = '#D4DAEC';
+export const ACTIVE_COLOR_HEX = '#231E5A';

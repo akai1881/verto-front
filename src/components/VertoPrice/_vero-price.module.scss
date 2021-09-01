@@ -1,0 +1,7 @@
+@import './../../design-tokens/variables';
+
+.price {
+  color: $primary-color;
+  font-weight: $title-weight;
+  margin-bottom: 0;
+}

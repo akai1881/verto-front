@@ -1,0 +1,53 @@
+@import './../../design-tokens/mixins';
+@import './../../design-tokens/variables';
+
+.wrapper {
+  @include box;
+  padding: 24px;
+  width: 100%;
+  margin: 30px 0;
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 66px;
+  }
+  .magazineTitle {
+    font-size: 24px;
+    color: #231e5a;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .title {
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 38px;
+  }
+  .column {
+    width: 33.33333333%;
+    position: relative;
+  }
+  .credit {
+    color: #8193ec;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .creditUpgrade {
+    font-size: 14px;
+    color: #231e5a;
+  }
+  .creditPercent {
+    color: $primary-color;
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+  .btn {
+    background-color: $secondary-color;
+    width: 270px;
+    height: 40px;
+    margin: 72px auto;
+  }
+}
