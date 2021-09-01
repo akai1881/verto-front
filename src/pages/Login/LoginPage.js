@@ -79,7 +79,7 @@ const LoginPage = () => {
 
   return (
     <div className={styles.login}>
-      {DOMLoading && <PreloadSpinner />}
+      {/* {DOMLoading && <PreloadSpinner />} */}
       <div className={styles.login_left_banner}></div>
       <div className={styles.login_right_column}>
         <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>

@@ -1,23 +1,23 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import styles from './_register.module.scss';
 import Button from 'components/UI/Button';
-import {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
-import {Spin} from 'antd';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { Spin } from 'antd';
 import * as yup from 'yup';
 import Checkbox from 'components/UI/Checkbox';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {PHONE_REGEX} from 'utils/consts';
-import {clearState, signup, userSelector} from 'store/slices/userSlice';
-import {openNotification} from 'utils/notifications';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { PHONE_REGEX } from 'utils/consts';
+import { clearState, signup, userSelector } from 'store/slices/userSlice';
+import { openNotification } from 'utils/notifications';
 
-import {Select} from 'antd';
-import PreloadSpinner from "../../components/UI/PreloadSpinner";
+import { Select } from 'antd';
+import PreloadSpinner from '../../components/UI/PreloadSpinner';
 
-const {Option} = Select;
+const { Option } = Select;
 
 let schema = yup.object({
   company_name: yup.string().required('Это обязательное поле'),
@@ -40,14 +40,14 @@ const CompanyRegister = () => {
   const {
     register,
     handleSubmit,
-    formState: {errors},
-  } = useForm({resolver: yupResolver(schema)});
-  const {isLoading, isSuccess, errorMessage, isError} = useSelector(userSelector);
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  const { isLoading, isSuccess, errorMessage, isError } = useSelector(userSelector);
   const [isChecked, setChecked] = useState(false);
   const [validate, setValidate] = useState(false);
   const [validateBin, setValidateBin] = useState(false);
   const [bank_choice, setBankChoice] = useState('kaspi');
-  const [DOMLoading, setDOMLoading] = useState(true)
+  const [DOMLoading, setDOMLoading] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -60,7 +60,7 @@ const CompanyRegister = () => {
     if (!bank_choice) {
       return;
     }
-    dispatch(signup({...data, bank_choice}));
+    dispatch(signup({ ...data, bank_choice }));
   };
 
   const handleValidate = (value) => {
@@ -74,23 +74,23 @@ const CompanyRegister = () => {
 
   useEffect(() => {
     const handleDOMLoaded = () => {
-      console.log('worked')
-      setDOMLoading(false)
-    }
+      console.log('worked');
+      setDOMLoading(false);
+    };
 
     if (DOMLoading) {
-      window.addEventListener('load', handleDOMLoaded)
+      window.addEventListener('load', handleDOMLoaded);
     } else {
-      window.removeEventListener('load', handleDOMLoaded)
+      window.removeEventListener('load', handleDOMLoaded);
     }
 
-    console.log("use effect")
+    console.log('use effect');
 
     return () => {
-      window.removeEventListener('load', handleDOMLoaded)
-      setDOMLoading(true)
-    }
-  }, [])
+      window.removeEventListener('load', handleDOMLoaded);
+      setDOMLoading(true);
+    };
+  }, []);
 
   useEffect(() => {
     if (isError) {
@@ -108,10 +108,10 @@ const CompanyRegister = () => {
 
   return (
     <div className={styles.register}>
-      {DOMLoading && (
+      {/* {DOMLoading && (
         <PreloadSpinner/>
-      )}
-      <div className={styles.register_left_banner}/>
+      )} */}
+      <div className={styles.register_left_banner} />
       <div className={styles.register_right_column}>
         <form className={styles.register_form} onSubmit={handleSubmit(onSubmit)}>
           <h1 className={styles.register_title}>Создать учетную запись</h1>
@@ -194,7 +194,7 @@ const CompanyRegister = () => {
               <div className={styles.input_item}>
                 <div className={styles.register_email_label}>Банк</div>
                 <div className="selector">
-                  <Select style={{width: '100%', height: '40px'}} value={bank_choice} onChange={handleChange}>
+                  <Select style={{ width: '100%', height: '40px' }} value={bank_choice} onChange={handleChange}>
                     <Option value="kaspi">Каспи</Option>
                   </Select>
                 </div>
@@ -238,7 +238,7 @@ const CompanyRegister = () => {
           
           </div> */}
           <div className={styles.checkbox}>
-            <Checkbox onChange={handleValidate} value={isChecked}/>
+            <Checkbox onChange={handleValidate} value={isChecked} />
             <div>
               <span>Создание учетной записи означает, что вы согласны с нашими</span>
               <span className={styles.text}>Условиями использования, Политикой конфиденциальности</span>
@@ -252,7 +252,7 @@ const CompanyRegister = () => {
           <Button className={styles.register_btn}>
             {isLoading ? (
               <div className="spinner">
-                <Spin/>
+                <Spin />
               </div>
             ) : (
               'Зарегистрироваться'
