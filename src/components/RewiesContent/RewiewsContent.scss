@@ -1,0 +1,306 @@
+.rewiwes-title {
+    background: url('./images/bcg.png');
+    height: 164px;
+    display: flex;
+    align-items: center;
+    div {
+        span {
+            display: block;
+            color: #231E5A;
+            font-weight: 700;
+            font-size: 40px;
+        }
+        p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #231E5A;
+        }
+    }
+}
+hr {
+    color: grey;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+.all-reviews-is-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    span {
+        display: block;
+        color: #8484B7;
+        font-weight: 700;
+        font-size: 44px;
+    }
+    button {
+        background-color: #3E5CF2;
+        color: #FFFFFF;
+        box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+        border-radius: 8px;
+        width: 370px;
+        height: 80px;
+        font-size: 20px;
+        font-weight: 700;
+        border: none;
+    
+    }
+}
+.add-review-title {
+    font-weight: 700;
+    font-size: 32px;
+    color: #231E5A;
+    margin-bottom: 32px;
+}
+.add-review-rate-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #231E5A;
+    margin-bottom: 10px;
+
+}
+.validate_error {
+  color: #f4422c;
+}
+.add-review-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    input {
+        width: 566px;
+        height: 40px;
+        background: #D4DAEC;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    &.error {
+      border: 1px solid #f4422c;
+      color: inherit;
+    }
+    input:focus {
+        box-shadow: 0px 0px 0px 4px #D4DAEC;
+        border: 1px solid #3E5CF2;
+        background: #FFFFFF;
+    }
+    .add-review-form-big-inp {
+        height: 265px;
+    }
+    textarea {
+        width: 566px;
+        height: 265px;
+        background: #D4DAEC;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    textarea:focus {
+        box-shadow: 0px 0px 0px 4px #D4DAEC;
+        border: 1px solid #3E5CF2;
+        background: #FFFFFF;
+    }
+    label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #231E5A;
+        margin-top: 30px;
+        margin-bottom: 9px;
+    }
+    button {
+        background-color: #3E5CF2;
+        color: #FFFFFF;
+        box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+        border-radius: 8px;
+        width: 270px;
+        height: 48px;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+    }
+    span {
+        font-size: 12px;
+        font-weight: 400;
+        color: #8484B7;
+        margin-bottom: 30px;
+    }
+    .add-review-form-inp-file {
+        width: 270px;
+        height: 48px;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+        color: #FFFFFF;
+        background: #8484B7;
+        text-align: center;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.review-card {
+  box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+  border-radius: 8px;
+  padding: 30px;
+  color: #231E5A;
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.review-card-email {
+  width: 33%;
+}
+.review-card-description {
+  display: flex;
+  width: 67%;
+}
+.review-card-img {
+  width: 40%;
+}
+.review-card-desctiption-plus-minus {
+  width: 60%;
+}
+@media all and (max-width: 320px) {
+    hr {
+      margin: 10px 0 !important;
+    }
+    .rewiwes-title {
+      height: 64px !important;
+      span {
+        font-size: 14px !important;
+      }
+      p {
+        font-size: 8px !important;
+      }
+    }
+    .add-review-title {
+      font-size: 20px !important;
+    }
+    .add-review-rate-title {
+      font-size: 13px !important;
+    }
+    .add-review-form {
+      input {
+        width: 100% !important;
+      }
+      textarea {
+        width: 100% !important;
+      }
+      label {
+        font-size: 13px !important;
+      }
+    }
+    .all-reviews-is-empty {
+      margin: 10px 0;
+      span {
+        font-size: 20px !important;
+      }
+    }
+    button {
+      width: 254px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
+  }
+  
+  @media all and (max-width: 425px) {
+    hr {
+      margin: 10px 0 !important;
+    }
+    .rewiwes-title {
+      height: 64px !important;
+      span {
+        font-size: 20px !important;
+      }
+      p {
+        font-size: 10px !important;
+      }
+    }
+    .add-review-title {
+      font-size: 20px !important;
+    }
+    .add-review-rate-title {
+      font-size: 13px !important;
+    }
+    .add-review-form {
+      input {
+        width: 100% !important;
+      }
+      textarea {
+        width: 100% !important;
+      }
+      label {
+        font-size: 13px !important;
+      }
+    }
+    .review-card {
+      font-size: 13px;
+    }
+    .all-reviews-is-empty {
+      margin: 10px 0;
+      span {
+        font-size: 20px !important;
+      }
+    }
+    button {
+      width: 254px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
+  }
+
+@media all and (max-width: 1044px){
+  .review-card {
+    flex-direction: column;
+  }
+  .review-card-email {
+    width: 100%;
+  }
+  .review-card-description {
+  width: 100%;
+  }
+  .review-card-img {
+  width: 40%; 
+  }
+  .review-card-desctiption-plus-minus {
+  width: 60%;
+  }
+}
+@media all and (max-width: 760px){
+  .add-review-form {
+    input {
+      width: 100% !important;
+    }
+    textarea {
+      width: 100% !important;
+    }
+  }
+}
+@media all and (max-width: 505px){
+  .review-card-description {
+    flex-direction: column;
+    width: 100%;
+  }
+  .review-card-img {
+    width: 50%;
+  }
+  .review-card-desctiption-plus-minus {
+    width: 100%;
+  }
+}
+@media all and (max-width: 1191px){
+  .all-reviews-is-empty {
+    span {
+      font-size: 30px;
+    }
+  }
+}
+@media all and (max-width: 454px){
+  .all-reviews-is-empty {
+    span {
+      font-size: 20px;
+    }
+  }
+}

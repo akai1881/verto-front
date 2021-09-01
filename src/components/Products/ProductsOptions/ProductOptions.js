@@ -16,11 +16,6 @@ import productsSlice from 'store/slices/productsSlice';
 import styles from './_products_option.module.scss';
 import { useMediaQuery } from 'react-responsive';
 import { deviceSize } from 'utils/consts';
-import { addItemToCart } from 'utils/cart';
-import { notification } from 'antd';
-import { openNotification } from 'utils/notifications';
-import { useDispatch } from 'react-redux';
-import { setCartLength } from 'store/slices/productsSlice';
 
 const memory = {
   title: 'memory',
@@ -73,7 +68,6 @@ const ProductOptions = ({ product }) => {
   const [colorChoose, setColorChoose] = useState(null);
   const [chooseOption, setChooseOption] = useState(null);
   const [productCount, setProducCount] = useState(1);
-  const dispatch = useDispatch();
 
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
 
@@ -129,17 +123,6 @@ const ProductOptions = ({ product }) => {
       count -= 1;
       setProducCount(count);
     }
-  };
-
-  const handleAddToCart = () => {
-    addItemToCart(product, productCount).then((result) => {
-      if (result.type == 'add') {
-        openNotification('success', 'Товар добавлен в корзину', 2);
-      } else {
-        openNotification('success', 'Товар удален из корзины', 2);
-      }
-      dispatch(setCartLength(result.cart.products.length));
-    });
   };
 
   return (
@@ -245,7 +228,7 @@ const ProductOptions = ({ product }) => {
             <span>{product.price} ₸</span>
           </div>
         </div>
-        <Button className={styles.product__addToCardBtn} onClick={handleAddToCart}>
+        <Button className={styles.product__addToCardBtn}>
           <CardIcon />
           <span>Добавить в корзину</span>
         </Button>

@@ -1,6 +1,6 @@
-@import './../../design-tokens/mixins';
-
 .cartListWrapper {
   width: 100%;
-  @include box;
+  box-shadow: 0.4px 0.4px 16px rgba(212, 218, 236, 0.7);
+  border-radius: 8px;
+  background: #fff;
 }

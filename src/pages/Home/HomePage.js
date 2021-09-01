@@ -37,6 +37,7 @@ import { useMediaQuery } from 'react-responsive';
 import { deviceSize } from 'utils/consts';
 import { Suspense } from 'react';
 import Spinner from 'components/UI/Spinner';
+import { fetchMainVideo } from 'store/slices/mainVideoSlice';
 
 const { Paragraph } = Typography;
 const categoriesMock = [
@@ -151,14 +152,15 @@ const HomePage = (props) => {
 
   const {data: newProducts, isLoading: newProductsLoading} = useSelector(({ products }) => products.newProducts);
   const {data: recentlyView, isLoading: recentlyViewLoading} = useSelector(({ products }) => products.recentlyView);
-
   useEffect(() => {
     dispath(fetchTopCategories());
     dispath(fetchPopularProducts());
     dispath(fetchNewProducts());
     dispath(fetchRecentlyView());
+    dispath(fetchMainVideo());
   }, []);
-
+  const mainVideo = useSelector(({mainVideo}) => mainVideo.mainVideo.data);
+  console.log('mainVideo', mainVideo);
   return (
     <MainLayout>
       <HeroCarousel />

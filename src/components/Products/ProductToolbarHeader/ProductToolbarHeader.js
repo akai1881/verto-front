@@ -73,7 +73,7 @@ const ProductToolbarHeader = ({ results }) => {
       <Flex justify="space-between" align="center">
         <div className={styles.toolbar_results}>Результатов {results}</div>
 
-        {!isMobile ? ( // TODO MAKE THIS AS A INDIVIDUAL COMPONENT
+        {!isMobile ? ( // TODO MAKE THIS AS A COMPONENT
           <div className={styles.toolbar_sort_wrapper}>
             <Flex align="center">
               <div className="selector">

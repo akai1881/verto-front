@@ -5,6 +5,7 @@ import AuthService from 'services/AuthService';
 export const login = createAsyncThunk('user/login', async ({ email, password }, { rejectWithValue }) => {
   try {
     const response = await AuthService.login(email, password);
+    console.log(response);
 
     const { data } = response;
 
@@ -26,7 +27,7 @@ export const login = createAsyncThunk('user/login', async ({ email, password }, 
 export const signup = createAsyncThunk('user/signup', async (user, { rejectWithValue }) => {
   try {
     const response = await AuthService.registration(user);
-
+    console.log('this is response', response);
     const { data } = response;
 
     if (response.status >= 200 && response.status <= 300) {

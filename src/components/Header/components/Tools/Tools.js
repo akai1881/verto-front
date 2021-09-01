@@ -25,19 +25,16 @@ const mock = [
     id: 2,
     Icon: EyeIcon,
     title: 'Просмотренные',
-    path: '/seen',
   },
   {
     id: 3,
     Icon: HeartIcon,
     title: 'Избранное',
-    path: '/favorites',
   },
   {
     id: 4,
     Icon: BagIcon,
     title: 'Корзина',
-    path: '/cart',
   },
 ];
 
@@ -79,7 +76,7 @@ const Tools = () => {
 
   return (
     <Flex align="center">
-      {mock.map(({ id, Icon, title, path }) => {
+      {mock.map(({ id, Icon, title }) => {
         if (title === 'Профиль') {
           return (
             <Dropdown overlay={menu} trigger={['click']} key={id}>
@@ -90,15 +87,21 @@ const Tools = () => {
               </Tooltip>
             </Dropdown>
           );
-        } else {
+        } if(title === 'Корзина'){
+          return (            <Tooltip key={id} placement="top" title={title}>
+          <div key={id} className={styles.tool}>
+            <Link to='/cart'><Icon /></Link>
+          </div>
+        </Tooltip>
+)
+        }
+        else {
           return (
-            <Link to={path}>
-              <Tooltip key={id} placement="top" title={title}>
-                <div key={id} className={styles.tool}>
-                  <Icon />
-                </div>
-              </Tooltip>
-            </Link>
+            <Tooltip key={id} placement="top" title={title}>
+              <div key={id} className={styles.tool}>
+                <Icon />
+              </div>
+            </Tooltip>
           );
         }
       })}

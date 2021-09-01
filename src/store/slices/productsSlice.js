@@ -92,9 +92,6 @@ export const handleSearch = createAsyncThunk('products/handleSearch', async (val
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    cart: {
-      length: 0,
-    },
     categories: {
       error: null,
       topCategories: [],
@@ -138,9 +135,6 @@ export const productsSlice = createSlice({
     },
     setSearchOpen: (state, action) => {
       state.search.open = action.payload;
-    },
-    setCartLength: (state, action) => {
-      state.cart.length = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -221,6 +215,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setSearchValue, setSearchOpen, setCartLength } = productsSlice.actions;
+export const { setSearchValue, setSearchOpen } = productsSlice.actions;
 
 export default productsSlice.reducer;

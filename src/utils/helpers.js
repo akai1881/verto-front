@@ -24,32 +24,3 @@ export const isCheckedFilter = (title, params) => {
 export const getQuerySearch = () => {
   return decodeURIComponent(window.location.search.slice(1)).replace('$', '');
 };
-
-export const isEmptyString = (data) => data === '';
-
-export const getItemsFromLocalStorage = (key) => {
-  if (!isString(key)) {
-    return false;
-  }
-  return JSON.parse(localStorage.getItem(key));
-};
-
-export const setItemsToLocalStorage = (key, item) => {
-  if (!isString(key)) return false;
-
-  if (isString(item)) {
-    localStorage.setItem(key, item);
-  } else {
-    localStorage.setItem(key, JSON.stringify(item));
-  }
-};
-
-export const calcSubPrice = (count, price) => count * price;
-
-export const calcTotalPrice = (products) => {
-  return products.reduce((ac, cur) => {
-    return (ac += cur.subPrice);
-  }, 0);
-};
-
-const isString = (key) => typeof key === 'string';

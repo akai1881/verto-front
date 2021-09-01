@@ -1,27 +1,33 @@
-import React from 'react';
-import Flex from './../../../UI/Flex';
-import styles from './_nav.module.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import Flex from "./../../../UI/Flex";
+import styles from "./_nav.module.scss";
 
 const mock = [
   {
     id: 1,
-    text: 'О сайте',
+    text: "О сайте",
+    path: "/about-us",
   },
   {
     id: 2,
-    text: 'Связаться',
+    text: "Связаться",
+    path: "/contact-us",
   },
   {
     id: 3,
-    text: 'Помощь',
+    text: "Помощь",
+    path: "/help",
   },
   {
     id: 4,
-    text: 'Условия работы',
+    text: "Условия работы",
+    path: "/conditions",
   },
   {
     id: 5,
-    text: 'Сертификаты',
+    text: "Сертификаты",
+    path: "/certifications",
   },
 ];
 
@@ -29,10 +35,10 @@ const Nav = () => {
   return (
     <div className={styles.wrapper}>
       <Flex>
-        {mock.map(({id, text}) => (
-          <a href="#" className={styles.link} key={id}>
+        {mock.map(({ id, text, path }) => (
+          <Link key={id} className={styles.link} to={path}>
             {text}
-          </a>
+          </Link>
         ))}
       </Flex>
     </div>
